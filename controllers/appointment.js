@@ -86,5 +86,38 @@ appointmentRouter.put("/:id/confirm", async (request, response) => {
     response.status(500).json({ error: "Failed to confirm appointment." });
   }
 });
+//cancel an appointment
+appointmentRouter.put("/:id/cancel", async (request, response) => {
+  try {
+    const { id } = request.params;
 
+    const appointment = await Appointment.findById(id);
+
+    if (!appointment) {
+      return response.status(404).json({ error: "Appointment not found." });
+    }
+
+    appointment.status = "cancelled";
+
+    const savedAppointment = await appointment.save();
+    response.json(savedAppointment);
+  } catch (error) {
+    response.status(500).json({ error: "Failed to cancel appointment." });
+  }
+});
+//get all seller appointments
+appointmentRouter.get("/seller/:sellerId", async (request, response) => {
+  try {
+    const { sellerId } = request.params;
+    console.log(sellerId);
+
+    const appointments = await Appointment.find({ seller: sellerId })
+      .populate("buyer", "name")
+      .populate("property", "title");
+
+    response.json(appointments);
+  } catch (error) {
+    response.status(500).json({ error: "Failed to retrieve appointments." });
+  }
+});
 module.exports = appointmentRouter;
