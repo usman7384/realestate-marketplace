@@ -64,11 +64,13 @@ messageRouter.get("/recieved/:reciever", async (request, response) => {
 
 messageRouter.get("/:sender/:reciever", async (request, response) => {
   try {
+    console.log(request.params);
     const decodedToken = jwt.verify(request.token, process.env.SECRET);
     if (!request.token || !decodedToken.id) {
       return response.status(401).json({ error: "token missing or invalid" });
     }
     const user = await User.findById(decodedToken.id);
+    console.log(user)
     if (!user) {
       return response.status(401).json({ error: "user not found" });
     }
@@ -77,13 +79,16 @@ messageRouter.get("/:sender/:reciever", async (request, response) => {
       user._id.toString() === request.params.reciever.toString() ||
       user._id.toString() === request.params.sender.toString()
     ) {
+      console.log("here");
       const messages = await Message.find({
         sender: request.params.sender,
-        reciever: request.params.reciever,
+        receiver: request.params.reciever,
       });
+      console.log(messages);
       response.json(messages);
     }
   } catch (error) {
+    console.log(error);
     response.status(404).end();
   }
 });
@@ -130,6 +135,7 @@ messageRouter.post(
         dateTime: new Date(),
       });
       const savedMessage = await message.save();
+      response.json(savedMessage);
     } catch (error) {
       console.log(error);
       response.status(500).json({ error: "Failed to send message." });

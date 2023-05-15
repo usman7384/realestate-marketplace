@@ -195,9 +195,10 @@ propertyRouter.put("/buy/:id", async (request, response) => {
       return response.status(401).json({ error: "token missing or invalid" });
     }
     const user = await User.findById(decodedToken.id);
+    console.log(user);
     if (!user) {
       return response.status(401).json({ error: "user not found" });
-    } else if (user.role !== "buyer") {
+    } else if (user.role !== "customer") {
       return response.status(401).json({ error: "user not authorized" });
     }
     const property = await Property.findByIdAndUpdate(
@@ -208,6 +209,7 @@ propertyRouter.put("/buy/:id", async (request, response) => {
       },
       { new: true },
     );
+    console.log(property);
     response.json(property);
   } catch (error) {
     response.status(404).end();

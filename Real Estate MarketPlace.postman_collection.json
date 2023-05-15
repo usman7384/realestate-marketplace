@@ -1,0 +1,2377 @@
+{
+	"info": {
+		"_postman_id": "a196a53b-529b-42c4-a19d-a45b7579f6a7",
+		"name": "Real Estate MarketPlace",
+		"description": "API EndPoints Testing for Real Estate MarketPlace",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "24891103"
+	},
+	"item": [
+		{
+			"name": "Login",
+			"request": {
+				"auth": {
+					"type": "noauth"
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"username\": \"seller_doe\",\r\n    \"password\": \"password123\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:3003/api/login",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3003",
+					"path": [
+						"api",
+						"login"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "Login",
+					"originalRequest": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"username\": \"seller_doe\",\r\n    \"password\": \"password123\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:3003/api/login",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3003",
+							"path": [
+								"api",
+								"login"
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "X-Powered-By",
+							"value": "Express"
+						},
+						{
+							"key": "Access-Control-Allow-Origin",
+							"value": "*"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json; charset=utf-8"
+						},
+						{
+							"key": "Content-Length",
+							"value": "238"
+						},
+						{
+							"key": "ETag",
+							"value": "W/\"ee-sTlWktvtlTW2/pGk7yiLM8Wc5Dc\""
+						},
+						{
+							"key": "Date",
+							"value": "Mon, 15 May 2023 14:16:59 GMT"
+						},
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						},
+						{
+							"key": "Keep-Alive",
+							"value": "timeout=5"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"token\": \"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6InNlbGxlcl9kb2UiLCJpZCI6IjY0NWZhYWFhYTZiNTU3ZjMwYmVjMDQ0OCIsImlhdCI6MTY4NDE2MDIxOX0.Z8pzyecJd39ME90Aj11RX5WH1QBddIJpRzplBw5qirk\",\n    \"username\": \"seller_doe\",\n    \"fullname\": \"John Doe\"\n}"
+				}
+			]
+		},
+		{
+			"name": "Post A Property",
+			"request": {
+				"auth": {
+					"type": "noauth"
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "title",
+							"value": "Mera Ghar",
+							"type": "text"
+						},
+						{
+							"key": "description",
+							"value": "Beautiful ",
+							"type": "text"
+						},
+						{
+							"key": "price",
+							"value": "1000",
+							"type": "text"
+						},
+						{
+							"key": "location",
+							"value": "Islamabad",
+							"type": "text"
+						},
+						{
+							"key": "history",
+							"value": "only in my use",
+							"type": "text"
+						},
+						{
+							"key": "tax",
+							"value": "0.17",
+							"type": "text"
+						},
+						{
+							"key": "attachments",
+							"type": "file",
+							"src": "/C:/Users/mu393/OneDrive/Desktop/aashir.png"
+						}
+					]
+				},
+				"url": {
+					"raw": "http://localhost:3003/api/properties",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3003",
+					"path": [
+						"api",
+						"properties"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "Post A Property",
+					"originalRequest": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "title",
+									"value": "Mera Ghar",
+									"type": "text"
+								},
+								{
+									"key": "description",
+									"value": "Beautiful ",
+									"type": "text"
+								},
+								{
+									"key": "price",
+									"value": "1000",
+									"type": "text"
+								},
+								{
+									"key": "location",
+									"value": "Islamabad",
+									"type": "text"
+								},
+								{
+									"key": "history",
+									"value": "only in my use",
+									"type": "text"
+								},
+								{
+									"key": "tax",
+									"value": "0.17",
+									"type": "text"
+								},
+								{
+									"key": "attachments",
+									"type": "file",
+									"src": "/C:/Users/mu393/OneDrive/Desktop/aashir.png"
+								}
+							]
+						},
+						"url": {
+							"raw": "http://localhost:3003/api/properties",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3003",
+							"path": [
+								"api",
+								"properties"
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "X-Powered-By",
+							"value": "Express"
+						},
+						{
+							"key": "Access-Control-Allow-Origin",
+							"value": "*"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json; charset=utf-8"
+						},
+						{
+							"key": "Content-Length",
+							"value": "314"
+						},
+						{
+							"key": "ETag",
+							"value": "W/\"13a-UKqV9uWlGScw+Fn6R+BkDDYqevA\""
+						},
+						{
+							"key": "Date",
+							"value": "Mon, 15 May 2023 14:18:22 GMT"
+						},
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						},
+						{
+							"key": "Keep-Alive",
+							"value": "timeout=5"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"title\": \"Mera Ghar\",\n    \"description\": \"Beautiful \",\n    \"price\": 1000,\n    \"photos\": [],\n    \"location\": \"Islamabad\",\n    \"history\": \"only in my use\",\n    \"tax\": 0.17,\n    \"owner\": \"645faaaaa6b557f30bec0448\",\n    \"buyer\": null,\n    \"isSold\": false,\n    \"isApproved\": false,\n    \"isVerified\": false,\n    \"verificationComments\": \"Not Verified\",\n    \"_id\": \"64623f2e77dbce36a506b4a0\",\n    \"__v\": 0\n}"
+				}
+			]
+		},
+		{
+			"name": "Customer Sign Up",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"username\": \"testcustomer_doe\",\r\n    \"fullname\": \"John Doe\",\r\n    \"password\": \"password123\",\r\n    \"email\":\"testcustomer@exampple.com\",\r\n    \"phone\":\"1234567890111\",\r\n    \"address\": \"123, abc street, xyz city, 12345\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:3003/api/users/customer",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3003",
+					"path": [
+						"api",
+						"users",
+						"customer"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "Customer Sign Up",
+					"originalRequest": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"username\": \"test1customer_doe\",\r\n    \"fullname\": \"John Doe\",\r\n    \"password\": \"password123\",\r\n    \"email\":\"testcu1stomer@exampple.com\",\r\n    \"phone\":\"1234567890111\",\r\n    \"address\": \"123, abc street, xyz city, 12345\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:3003/api/users/customer",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3003",
+							"path": [
+								"api",
+								"users",
+								"customer"
+							]
+						}
+					},
+					"status": "Created",
+					"code": 201,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "X-Powered-By",
+							"value": "Express"
+						},
+						{
+							"key": "Access-Control-Allow-Origin",
+							"value": "*"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json; charset=utf-8"
+						},
+						{
+							"key": "Content-Length",
+							"value": "350"
+						},
+						{
+							"key": "ETag",
+							"value": "W/\"15e-xTdhurTGs50/NRgMkxv7gwFPU/8\""
+						},
+						{
+							"key": "Date",
+							"value": "Mon, 15 May 2023 14:18:45 GMT"
+						},
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						},
+						{
+							"key": "Keep-Alive",
+							"value": "timeout=5"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"username\": \"test1customer_doe\",\n    \"fullname\": \"John Doe\",\n    \"email\": \"testcu1stomer@exampple.com\",\n    \"password\": \"$2b$10$3pdFBd1DOH2REw3tC3tQyeRr2fyeJJ1bgO6A1Cm8Ym7Un9ygGdYKm\",\n    \"phone\": \"1234567890111\",\n    \"address\": \"123, abc street, xyz city, 12345\",\n    \"role\": \"customer\",\n    \"propertiesOwned\": [],\n    \"propertiesBought\": [],\n    \"wishlist\": [],\n    \"_id\": \"64623f4577dbce36a506b4a9\",\n    \"__v\": 0\n}"
+				}
+			]
+		},
+		{
+			"name": "Seller Sign Up",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"username\": \"testseller_doe\",\r\n    \"fullname\": \"John Doe\",\r\n    \"password\": \"password123\",\r\n    \"email\":\"testseller@exampple.com\",\r\n    \"phone\":\"1234567890111\",\r\n    \"address\": \"123, abc street, xyz city, 12345\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:3003/api/users/seller",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3003",
+					"path": [
+						"api",
+						"users",
+						"seller"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "Seller Sign Up",
+					"originalRequest": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"username\": \"test1seller_doe\",\r\n    \"fullname\": \"John Doe\",\r\n    \"password\": \"password123\",\r\n    \"email\":\"testselle1r@exampple.com\",\r\n    \"phone\":\"1234567890111\",\r\n    \"address\": \"123, abc street, xyz city, 12345\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:3003/api/users/seller",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3003",
+							"path": [
+								"api",
+								"users",
+								"seller"
+							]
+						}
+					},
+					"status": "Created",
+					"code": 201,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "X-Powered-By",
+							"value": "Express"
+						},
+						{
+							"key": "Access-Control-Allow-Origin",
+							"value": "*"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json; charset=utf-8"
+						},
+						{
+							"key": "Content-Length",
+							"value": "344"
+						},
+						{
+							"key": "ETag",
+							"value": "W/\"158-/MHn6/IVextS/9jsHhmsh4qfnWc\""
+						},
+						{
+							"key": "Date",
+							"value": "Mon, 15 May 2023 14:18:59 GMT"
+						},
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						},
+						{
+							"key": "Keep-Alive",
+							"value": "timeout=5"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"username\": \"test1seller_doe\",\n    \"fullname\": \"John Doe\",\n    \"email\": \"testselle1r@exampple.com\",\n    \"password\": \"$2b$10$G/6UhU7rN3P3relTmt3zSe3hhoD5QSqhgIB.U6k6aJGE3WEukufni\",\n    \"phone\": \"1234567890111\",\n    \"address\": \"123, abc street, xyz city, 12345\",\n    \"role\": \"seller\",\n    \"propertiesOwned\": [],\n    \"propertiesBought\": [],\n    \"wishlist\": [],\n    \"_id\": \"64623f5277dbce36a506b4ad\",\n    \"__v\": 0\n}"
+				}
+			]
+		},
+		{
+			"name": "Admin Sign Up",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"username\": \"testadmin_doe\",\r\n    \"fullname\": \"John Doe\",\r\n    \"password\": \"password123\",\r\n    \"email\":\"testadmin@exampple.com\",\r\n    \"phone\":\"1234567890111\",\r\n    \"address\": \"123, abc street, xyz city, 12345\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:3003/api/users/admin",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3003",
+					"path": [
+						"api",
+						"users",
+						"admin"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "Admin Sign Up",
+					"originalRequest": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"username\": \"test1admin_doe\",\r\n    \"fullname\": \"John Doe\",\r\n    \"password\": \"password123\",\r\n    \"email\":\"testadmi1n@exampple.com\",\r\n    \"phone\":\"1234567890111\",\r\n    \"address\": \"123, abc street, xyz city, 12345\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:3003/api/users/admin",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3003",
+							"path": [
+								"api",
+								"users",
+								"admin"
+							]
+						}
+					},
+					"status": "Created",
+					"code": 201,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "X-Powered-By",
+							"value": "Express"
+						},
+						{
+							"key": "Access-Control-Allow-Origin",
+							"value": "*"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json; charset=utf-8"
+						},
+						{
+							"key": "Content-Length",
+							"value": "341"
+						},
+						{
+							"key": "ETag",
+							"value": "W/\"155-kYA4cslGX0WEiaS8G1MIIgOqpv4\""
+						},
+						{
+							"key": "Date",
+							"value": "Mon, 15 May 2023 14:19:10 GMT"
+						},
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						},
+						{
+							"key": "Keep-Alive",
+							"value": "timeout=5"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"username\": \"test1admin_doe\",\n    \"fullname\": \"John Doe\",\n    \"email\": \"testadmi1n@exampple.com\",\n    \"password\": \"$2b$10$sINgPSGnuvrTCbLBOxvSVe7C63y/iDnSYFlFPGVjRAPZo.KeyH4Nu\",\n    \"phone\": \"1234567890111\",\n    \"address\": \"123, abc street, xyz city, 12345\",\n    \"role\": \"admin\",\n    \"propertiesOwned\": [],\n    \"propertiesBought\": [],\n    \"wishlist\": [],\n    \"_id\": \"64623f5e77dbce36a506b4b1\",\n    \"__v\": 0\n}"
+				}
+			]
+		},
+		{
+			"name": "Send Message with Attachment",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "sender",
+							"value": "646221e205bba1d55bea0781",
+							"type": "text"
+						},
+						{
+							"key": "reciever",
+							"value": "646221b405bba1d55bea077d",
+							"type": "text"
+						},
+						{
+							"key": "content",
+							"value": "Test message",
+							"type": "text"
+						},
+						{
+							"key": "attachments",
+							"type": "file",
+							"src": "/C:/Users/mu393/OneDrive/Desktop/chess.png"
+						}
+					]
+				},
+				"url": {
+					"raw": "http://localhost:3003/api/messages/attachment",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3003",
+					"path": [
+						"api",
+						"messages",
+						"attachment"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "Send Message with Attachment",
+					"originalRequest": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "sender",
+									"value": "646221e205bba1d55bea0781",
+									"type": "text"
+								},
+								{
+									"key": "reciever",
+									"value": "646221b405bba1d55bea077d",
+									"type": "text"
+								},
+								{
+									"key": "content",
+									"value": "Test message",
+									"type": "text"
+								},
+								{
+									"key": "attachments",
+									"type": "file",
+									"src": "/C:/Users/mu393/OneDrive/Desktop/chess.png"
+								}
+							]
+						},
+						"url": {
+							"raw": "http://localhost:3003/api/messages/attachment",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3003",
+							"path": [
+								"api",
+								"messages",
+								"attachment"
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "X-Powered-By",
+							"value": "Express"
+						},
+						{
+							"key": "Access-Control-Allow-Origin",
+							"value": "*"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json; charset=utf-8"
+						},
+						{
+							"key": "Content-Length",
+							"value": "253"
+						},
+						{
+							"key": "ETag",
+							"value": "W/\"fd-TE1zG2AfeMaV/DO5SCqqwhY7EQM\""
+						},
+						{
+							"key": "Date",
+							"value": "Mon, 15 May 2023 14:19:18 GMT"
+						},
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						},
+						{
+							"key": "Keep-Alive",
+							"value": "timeout=5"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"sender\": \"646221e205bba1d55bea0781\",\n    \"receiver\": \"646221b405bba1d55bea077d\",\n    \"content\": \"Test message\",\n    \"dateTime\": \"2023-05-15T14:19:18.222Z\",\n    \"attachments\": [\n        \"attachments/chess.png\"\n    ],\n    \"isRead\": false,\n    \"isArchived\": false,\n    \"_id\": \"64623f6677dbce36a506b4b5\",\n    \"__v\": 0\n}"
+				}
+			]
+		},
+		{
+			"name": "Simple Text Message",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"sender\":\"646221e205bba1d55bea0781\",\r\n    \"reciever\":\"646221b405bba1d55bea077d\",\r\n    \"content\":\"Simple Test Message\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:3003/api/messages/simple",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3003",
+					"path": [
+						"api",
+						"messages",
+						"simple"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "Simple Text Message",
+					"originalRequest": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"sender\":\"646221e205bba1d55bea0781\",\r\n    \"reciever\":\"646221b405bba1d55bea077d\",\r\n    \"content\":\"Simple Test Message\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:3003/api/messages/simple",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3003",
+							"path": [
+								"api",
+								"messages",
+								"simple"
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "X-Powered-By",
+							"value": "Express"
+						},
+						{
+							"key": "Access-Control-Allow-Origin",
+							"value": "*"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json; charset=utf-8"
+						},
+						{
+							"key": "Content-Length",
+							"value": "237"
+						},
+						{
+							"key": "ETag",
+							"value": "W/\"ed-UJyDMkDDvuTPx0RRUjH5JxOasD8\""
+						},
+						{
+							"key": "Date",
+							"value": "Mon, 15 May 2023 14:19:25 GMT"
+						},
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						},
+						{
+							"key": "Keep-Alive",
+							"value": "timeout=5"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"sender\": \"646221e205bba1d55bea0781\",\n    \"receiver\": \"646221b405bba1d55bea077d\",\n    \"content\": \"Simple Test Message\",\n    \"dateTime\": \"2023-05-15T14:19:25.209Z\",\n    \"attachments\": [],\n    \"isRead\": false,\n    \"isArchived\": false,\n    \"_id\": \"64623f6d77dbce36a506b4b9\",\n    \"__v\": 0\n}"
+				}
+			]
+		},
+		{
+			"name": "Schedule Appointment With the Seller/Owner of Property",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"sellerId\":\"645faaaaa6b557f30bec0448\",\r\n    \"buyerId\":\"645faac6a6b557f30bec044e\",\r\n    \"propertyId\":\"64621428aebd2885005ba975\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:3003/api/appointments",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3003",
+					"path": [
+						"api",
+						"appointments"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "Schedule Appointment With the Seller/Owner of Property",
+					"originalRequest": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"sellerId\":\"645faaaaa6b557f30bec0448\",\r\n    \"buyerId\":\"645faac6a6b557f30bec044e\",\r\n    \"propertyId\":\"64621428aebd2885005ba975\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:3003/api/appointments",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3003",
+							"path": [
+								"api",
+								"appointments"
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "X-Powered-By",
+							"value": "Express"
+						},
+						{
+							"key": "Access-Control-Allow-Origin",
+							"value": "*"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json; charset=utf-8"
+						},
+						{
+							"key": "Content-Length",
+							"value": "208"
+						},
+						{
+							"key": "ETag",
+							"value": "W/\"d0-yZAundBLzOnyXxQqM7AJI1sZhJ8\""
+						},
+						{
+							"key": "Date",
+							"value": "Mon, 15 May 2023 14:19:33 GMT"
+						},
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						},
+						{
+							"key": "Keep-Alive",
+							"value": "timeout=5"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"buyer\": \"645faac6a6b557f30bec044e\",\n    \"seller\": \"645faaaaa6b557f30bec0448\",\n    \"property\": \"64621428aebd2885005ba975\",\n    \"dateTime\": \"2023-05-15T14:19:33.744Z\",\n    \"status\": \"pending\",\n    \"_id\": \"64623f7577dbce36a506b4bf\",\n    \"__v\": 0\n}"
+				}
+			]
+		},
+		{
+			"name": "Delete A User",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6ImFkbWluX2RvZSIsImlkIjoiNjQ1ZjczMWNjMjA0MWIyYmRkOWY3MmEzIiwiaWF0IjoxNjg0MTUzMDIyfQ.mq6BAA3McBGkONbrPm9PVNMLU_LZqg82Cwgofc0EBnc",
+							"type": "string"
+						}
+					]
+				},
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:3003/api/users/645f731cc2041b2bdd9f72a3",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3003",
+					"path": [
+						"api",
+						"users",
+						"645f731cc2041b2bdd9f72a3"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Fetch All Users",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:3003/api/users",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3003",
+					"path": [
+						"api",
+						"users"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "Fetch All Users",
+					"originalRequest": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:3003/api/users",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3003",
+							"path": [
+								"api",
+								"users"
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "X-Powered-By",
+							"value": "Express"
+						},
+						{
+							"key": "Access-Control-Allow-Origin",
+							"value": "*"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json; charset=utf-8"
+						},
+						{
+							"key": "Content-Length",
+							"value": "3218"
+						},
+						{
+							"key": "ETag",
+							"value": "W/\"c92-VEalK1MVxqUusCtJThbSwFbD4BY\""
+						},
+						{
+							"key": "Date",
+							"value": "Mon, 15 May 2023 14:19:41 GMT"
+						},
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						},
+						{
+							"key": "Keep-Alive",
+							"value": "timeout=5"
+						}
+					],
+					"cookie": [],
+					"body": "[\n    {\n        \"_id\": \"645faaaaa6b557f30bec0448\",\n        \"username\": \"seller_doe\",\n        \"fullname\": \"John Doe\",\n        \"email\": \"jhon@exampple.com\",\n        \"password\": \"$2b$10$Br.0X6IzW0CFjNtUWOpkze6HHbOPDsJ6I/CswKSoUP9NJ1nZ7GUg6\",\n        \"phone\": \"1234567890111\",\n        \"address\": \"123, abc street, xyz city, 12345\",\n        \"role\": \"seller\",\n        \"propertiesOwned\": [\n            \"64621428aebd2885005ba975\",\n            \"646239df878da2c3f044c9a9\",\n            \"64623a66878da2c3f044c9e2\",\n            \"64623b15878da2c3f044c9eb\",\n            \"64623f2e77dbce36a506b4a0\"\n        ],\n        \"propertiesBought\": [],\n        \"wishlist\": [],\n        \"__v\": 5\n    },\n    {\n        \"_id\": \"645faac6a6b557f30bec044e\",\n        \"username\": \"customer_doe\",\n        \"fullname\": \"John Doe\",\n        \"email\": \"seller@exampple.com\",\n        \"password\": \"$2b$10$SA6YJgeT1YawLjYmFlnpfeY/jhva/PuvDyXC0jgKktlw1YbE3I0DC\",\n        \"phone\": \"1234567890111\",\n        \"address\": \"123, abc street, xyz city, 12345\",\n        \"role\": \"customer\",\n        \"propertiesOwned\": [],\n        \"propertiesBought\": [],\n        \"wishlist\": [],\n        \"__v\": 0\n    },\n    {\n        \"_id\": \"6462215e05bba1d55bea0776\",\n        \"username\": \"testuser_doe\",\n        \"fullname\": \"John Doe\",\n        \"email\": \"testuser@exampple.com\",\n        \"password\": \"$2b$10$llXpa7Gwiixj9ivvBLz55uVkqSktckRYA.wd8lLiwjVqEyxGcv3dq\",\n        \"phone\": \"1234567890111\",\n        \"address\": \"123, abc street, xyz city, 12345\",\n        \"role\": \"customer\",\n        \"propertiesOwned\": [],\n        \"propertiesBought\": [],\n        \"wishlist\": [],\n        \"__v\": 0\n    },\n    {\n        \"_id\": \"646221b405bba1d55bea077d\",\n        \"username\": \"testcustomer_doe\",\n        \"fullname\": \"John Doe\",\n        \"email\": \"testcustomer@exampple.com\",\n        \"password\": \"$2b$10$oRT9IUzSLfaAziTO4mA4FubP/qf1ew1heSFYHBvh7SufcKvU4gk4u\",\n        \"phone\": \"1234567890111\",\n        \"address\": \"123, abc street, xyz city, 12345\",\n        \"role\": \"customer\",\n        \"propertiesOwned\": [],\n        \"propertiesBought\": [],\n        \"wishlist\": [],\n        \"__v\": 0\n    },\n    {\n        \"_id\": \"646221e205bba1d55bea0781\",\n        \"username\": \"testseller_doe\",\n        \"fullname\": \"John Doe\",\n        \"email\": \"testseller@exampple.com\",\n        \"password\": \"$2b$10$5TH0/MDTgvb8l7hzi8dQbuPgz7DN3GrILsV54eOIzQArFv3HwmMmS\",\n        \"phone\": \"1234567890111\",\n        \"address\": \"123, abc street, xyz city, 12345\",\n        \"role\": \"seller\",\n        \"propertiesOwned\": [],\n        \"propertiesBought\": [],\n        \"wishlist\": [],\n        \"__v\": 0\n    },\n    {\n        \"_id\": \"6462221905bba1d55bea0785\",\n        \"username\": \"testadmin_doe\",\n        \"fullname\": \"John Doe\",\n        \"email\": \"testadmin@exampple.com\",\n        \"password\": \"$2b$10$4ajuHuMvabJOvCJQoxdb3us2gaJvxLT7LCxF5JnbC.8uQMhOM1pV.\",\n        \"phone\": \"1234567890111\",\n        \"address\": \"123, abc street, xyz city, 12345\",\n        \"role\": \"admin\",\n        \"propertiesOwned\": [],\n        \"propertiesBought\": [],\n        \"wishlist\": [],\n        \"__v\": 0\n    },\n    {\n        \"_id\": \"64623f4577dbce36a506b4a9\",\n        \"username\": \"test1customer_doe\",\n        \"fullname\": \"John Doe\",\n        \"email\": \"testcu1stomer@exampple.com\",\n        \"password\": \"$2b$10$3pdFBd1DOH2REw3tC3tQyeRr2fyeJJ1bgO6A1Cm8Ym7Un9ygGdYKm\",\n        \"phone\": \"1234567890111\",\n        \"address\": \"123, abc street, xyz city, 12345\",\n        \"role\": \"customer\",\n        \"propertiesOwned\": [],\n        \"propertiesBought\": [],\n        \"wishlist\": [],\n        \"__v\": 0\n    },\n    {\n        \"_id\": \"64623f5277dbce36a506b4ad\",\n        \"username\": \"test1seller_doe\",\n        \"fullname\": \"John Doe\",\n        \"email\": \"testselle1r@exampple.com\",\n        \"password\": \"$2b$10$G/6UhU7rN3P3relTmt3zSe3hhoD5QSqhgIB.U6k6aJGE3WEukufni\",\n        \"phone\": \"1234567890111\",\n        \"address\": \"123, abc street, xyz city, 12345\",\n        \"role\": \"seller\",\n        \"propertiesOwned\": [],\n        \"propertiesBought\": [],\n        \"wishlist\": [],\n        \"__v\": 0\n    },\n    {\n        \"_id\": \"64623f5e77dbce36a506b4b1\",\n        \"username\": \"test1admin_doe\",\n        \"fullname\": \"John Doe\",\n        \"email\": \"testadmi1n@exampple.com\",\n        \"password\": \"$2b$10$sINgPSGnuvrTCbLBOxvSVe7C63y/iDnSYFlFPGVjRAPZo.KeyH4Nu\",\n        \"phone\": \"1234567890111\",\n        \"address\": \"123, abc street, xyz city, 12345\",\n        \"role\": \"admin\",\n        \"propertiesOwned\": [],\n        \"propertiesBought\": [],\n        \"wishlist\": [],\n        \"__v\": 0\n    }\n]"
+				}
+			]
+		},
+		{
+			"name": "Fetch User by ID",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:3003/api/users/645f731cc2041b2bdd9f72a3",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3003",
+					"path": [
+						"api",
+						"users",
+						"645f731cc2041b2bdd9f72a3"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "Fetch User by ID",
+					"originalRequest": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:3003/api/users/645f731cc2041b2bdd9f72a3",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3003",
+							"path": [
+								"api",
+								"users",
+								"645f731cc2041b2bdd9f72a3"
+							]
+						}
+					},
+					"status": "Not Found",
+					"code": 404,
+					"_postman_previewlanguage": "plain",
+					"header": [
+						{
+							"key": "X-Powered-By",
+							"value": "Express"
+						},
+						{
+							"key": "Access-Control-Allow-Origin",
+							"value": "*"
+						},
+						{
+							"key": "Date",
+							"value": "Mon, 15 May 2023 14:19:48 GMT"
+						},
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						},
+						{
+							"key": "Keep-Alive",
+							"value": "timeout=5"
+						},
+						{
+							"key": "Content-Length",
+							"value": "0"
+						}
+					],
+					"cookie": [],
+					"body": null
+				}
+			]
+		},
+		{
+			"name": "Fetch Property by ID",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:3003/api/properties/646213a0b303ee24355b588d",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3003",
+					"path": [
+						"api",
+						"properties",
+						"646213a0b303ee24355b588d"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "Fetch Property by ID",
+					"originalRequest": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:3003/api/properties/646213a0b303ee24355b588d",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3003",
+							"path": [
+								"api",
+								"properties",
+								"646213a0b303ee24355b588d"
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "X-Powered-By",
+							"value": "Express"
+						},
+						{
+							"key": "Access-Control-Allow-Origin",
+							"value": "*"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json; charset=utf-8"
+						},
+						{
+							"key": "Content-Length",
+							"value": "413"
+						},
+						{
+							"key": "ETag",
+							"value": "W/\"19d-hp8w/QVntvG8LElk2LyKK+KRcUQ\""
+						},
+						{
+							"key": "Date",
+							"value": "Mon, 15 May 2023 14:19:55 GMT"
+						},
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						},
+						{
+							"key": "Keep-Alive",
+							"value": "timeout=5"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"_id\": \"646213a0b303ee24355b588d\",\n    \"title\": \"Mera Ghar\",\n    \"description\": \"Beautiful \",\n    \"price\": 1000,\n    \"photos\": [\n        \"attachments/aashir.png\"\n    ],\n    \"location\": \"Islamabad\",\n    \"history\": \"only in my use\",\n    \"tax\": 0.17,\n    \"owner\": {\n        \"_id\": \"645faaaaa6b557f30bec0448\",\n        \"username\": \"seller_doe\",\n        \"fullname\": \"John Doe\"\n    },\n    \"buyer\": \"646221b405bba1d55bea077d\",\n    \"isSold\": true,\n    \"isApproved\": false,\n    \"isVerified\": false,\n    \"verificationComments\": \"Not Verified\",\n    \"__v\": 0\n}"
+				}
+			]
+		},
+		{
+			"name": "Fetch All Properties",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:3003/api/properties",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3003",
+					"path": [
+						"api",
+						"properties"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "Fetch All Properties",
+					"originalRequest": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:3003/api/properties",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3003",
+							"path": [
+								"api",
+								"properties"
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "X-Powered-By",
+							"value": "Express"
+						},
+						{
+							"key": "Access-Control-Allow-Origin",
+							"value": "*"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json; charset=utf-8"
+						},
+						{
+							"key": "Content-Length",
+							"value": "3070"
+						},
+						{
+							"key": "ETag",
+							"value": "W/\"bfe-iZJ//bRjti/bE5ih7gzq/3jhhBw\""
+						},
+						{
+							"key": "Date",
+							"value": "Mon, 15 May 2023 14:20:01 GMT"
+						},
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						},
+						{
+							"key": "Keep-Alive",
+							"value": "timeout=5"
+						}
+					],
+					"cookie": [],
+					"body": "[\n    {\n        \"_id\": \"646213a0b303ee24355b588d\",\n        \"title\": \"Mera Ghar\",\n        \"description\": \"Beautiful \",\n        \"price\": 1000,\n        \"photos\": [\n            \"attachments/aashir.png\"\n        ],\n        \"location\": \"Islamabad\",\n        \"history\": \"only in my use\",\n        \"tax\": 0.17,\n        \"owner\": {\n            \"_id\": \"645faaaaa6b557f30bec0448\",\n            \"username\": \"seller_doe\",\n            \"fullname\": \"John Doe\"\n        },\n        \"buyer\": \"646221b405bba1d55bea077d\",\n        \"isSold\": true,\n        \"isApproved\": false,\n        \"isVerified\": false,\n        \"verificationComments\": \"Not Verified\",\n        \"__v\": 0\n    },\n    {\n        \"_id\": \"646213d21614ed684c9f5124\",\n        \"title\": \"Mera Ghar\",\n        \"description\": \"Beautiful \",\n        \"price\": 1000,\n        \"photos\": [\n            \"attachments/aashir.png\"\n        ],\n        \"location\": \"Islamabad\",\n        \"history\": \"only in my use\",\n        \"tax\": 0.17,\n        \"owner\": {\n            \"_id\": \"645faaaaa6b557f30bec0448\",\n            \"username\": \"seller_doe\",\n            \"fullname\": \"John Doe\"\n        },\n        \"buyer\": null,\n        \"isSold\": false,\n        \"isApproved\": false,\n        \"isVerified\": false,\n        \"verificationComments\": \"Not Verified\",\n        \"__v\": 0\n    },\n    {\n        \"_id\": \"646213fda164c6ab5e04a173\",\n        \"title\": \"Mera Ghar\",\n        \"description\": \"Beautiful \",\n        \"price\": 1000,\n        \"photos\": [\n            \"attachments/aashir.png\"\n        ],\n        \"location\": \"Islamabad\",\n        \"history\": \"only in my use\",\n        \"tax\": 0.17,\n        \"owner\": {\n            \"_id\": \"645faaaaa6b557f30bec0448\",\n            \"username\": \"seller_doe\",\n            \"fullname\": \"John Doe\"\n        },\n        \"buyer\": null,\n        \"isSold\": false,\n        \"isApproved\": false,\n        \"isVerified\": false,\n        \"verificationComments\": \"Not Verified\",\n        \"__v\": 0\n    },\n    {\n        \"_id\": \"64621428aebd2885005ba975\",\n        \"title\": \"Mera Ghar\",\n        \"description\": \"Beautiful \",\n        \"price\": 1000,\n        \"photos\": [\n            \"attachments/aashir.png\"\n        ],\n        \"location\": \"Islamabad\",\n        \"history\": \"only in my use\",\n        \"tax\": 0.17,\n        \"owner\": {\n            \"_id\": \"645faaaaa6b557f30bec0448\",\n            \"username\": \"seller_doe\",\n            \"fullname\": \"John Doe\"\n        },\n        \"buyer\": null,\n        \"isSold\": false,\n        \"isApproved\": false,\n        \"isVerified\": false,\n        \"verificationComments\": \"Not Verified\",\n        \"__v\": 0\n    },\n    {\n        \"_id\": \"646239df878da2c3f044c9a9\",\n        \"title\": \"Mera Ghar\",\n        \"description\": \"Beautiful \",\n        \"price\": 1000,\n        \"photos\": [],\n        \"location\": \"Islamabad\",\n        \"history\": \"only in my use\",\n        \"tax\": 0.17,\n        \"owner\": {\n            \"_id\": \"645faaaaa6b557f30bec0448\",\n            \"username\": \"seller_doe\",\n            \"fullname\": \"John Doe\"\n        },\n        \"buyer\": null,\n        \"isSold\": false,\n        \"isApproved\": false,\n        \"isVerified\": false,\n        \"verificationComments\": \"Not Verified\",\n        \"__v\": 0\n    },\n    {\n        \"_id\": \"64623a66878da2c3f044c9e2\",\n        \"title\": \"Mera Ghar\",\n        \"description\": \"Beautiful \",\n        \"price\": 1000,\n        \"photos\": [],\n        \"location\": \"Islamabad\",\n        \"history\": \"only in my use\",\n        \"tax\": 0.17,\n        \"owner\": {\n            \"_id\": \"645faaaaa6b557f30bec0448\",\n            \"username\": \"seller_doe\",\n            \"fullname\": \"John Doe\"\n        },\n        \"buyer\": null,\n        \"isSold\": false,\n        \"isApproved\": false,\n        \"isVerified\": false,\n        \"verificationComments\": \"Not Verified\",\n        \"__v\": 0\n    },\n    {\n        \"_id\": \"64623b15878da2c3f044c9eb\",\n        \"title\": \"Mera Ghar\",\n        \"description\": \"Beautiful \",\n        \"price\": 1000,\n        \"photos\": [],\n        \"location\": \"Islamabad\",\n        \"history\": \"only in my use\",\n        \"tax\": 0.17,\n        \"owner\": {\n            \"_id\": \"645faaaaa6b557f30bec0448\",\n            \"username\": \"seller_doe\",\n            \"fullname\": \"John Doe\"\n        },\n        \"buyer\": null,\n        \"isSold\": false,\n        \"isApproved\": false,\n        \"isVerified\": false,\n        \"verificationComments\": \"Not Verified\",\n        \"__v\": 0\n    },\n    {\n        \"_id\": \"64623f2e77dbce36a506b4a0\",\n        \"title\": \"Mera Ghar\",\n        \"description\": \"Beautiful \",\n        \"price\": 1000,\n        \"photos\": [],\n        \"location\": \"Islamabad\",\n        \"history\": \"only in my use\",\n        \"tax\": 0.17,\n        \"owner\": {\n            \"_id\": \"645faaaaa6b557f30bec0448\",\n            \"username\": \"seller_doe\",\n            \"fullname\": \"John Doe\"\n        },\n        \"buyer\": null,\n        \"isSold\": false,\n        \"isApproved\": false,\n        \"isVerified\": false,\n        \"verificationComments\": \"Not Verified\",\n        \"__v\": 0\n    }\n]"
+				}
+			]
+		},
+		{
+			"name": "Search Property Based on Title (Keywords)",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:3003/api/properties/search/ghar",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3003",
+					"path": [
+						"api",
+						"properties",
+						"search",
+						"ghar"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "Search Property Based on Title (Keywords)",
+					"originalRequest": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:3003/api/properties/search/ghar",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3003",
+							"path": [
+								"api",
+								"properties",
+								"search",
+								"ghar"
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "X-Powered-By",
+							"value": "Express"
+						},
+						{
+							"key": "Access-Control-Allow-Origin",
+							"value": "*"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json; charset=utf-8"
+						},
+						{
+							"key": "Content-Length",
+							"value": "3070"
+						},
+						{
+							"key": "ETag",
+							"value": "W/\"bfe-iZJ//bRjti/bE5ih7gzq/3jhhBw\""
+						},
+						{
+							"key": "Date",
+							"value": "Mon, 15 May 2023 14:20:08 GMT"
+						},
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						},
+						{
+							"key": "Keep-Alive",
+							"value": "timeout=5"
+						}
+					],
+					"cookie": [],
+					"body": "[\n    {\n        \"_id\": \"646213a0b303ee24355b588d\",\n        \"title\": \"Mera Ghar\",\n        \"description\": \"Beautiful \",\n        \"price\": 1000,\n        \"photos\": [\n            \"attachments/aashir.png\"\n        ],\n        \"location\": \"Islamabad\",\n        \"history\": \"only in my use\",\n        \"tax\": 0.17,\n        \"owner\": {\n            \"_id\": \"645faaaaa6b557f30bec0448\",\n            \"username\": \"seller_doe\",\n            \"fullname\": \"John Doe\"\n        },\n        \"buyer\": \"646221b405bba1d55bea077d\",\n        \"isSold\": true,\n        \"isApproved\": false,\n        \"isVerified\": false,\n        \"verificationComments\": \"Not Verified\",\n        \"__v\": 0\n    },\n    {\n        \"_id\": \"646213d21614ed684c9f5124\",\n        \"title\": \"Mera Ghar\",\n        \"description\": \"Beautiful \",\n        \"price\": 1000,\n        \"photos\": [\n            \"attachments/aashir.png\"\n        ],\n        \"location\": \"Islamabad\",\n        \"history\": \"only in my use\",\n        \"tax\": 0.17,\n        \"owner\": {\n            \"_id\": \"645faaaaa6b557f30bec0448\",\n            \"username\": \"seller_doe\",\n            \"fullname\": \"John Doe\"\n        },\n        \"buyer\": null,\n        \"isSold\": false,\n        \"isApproved\": false,\n        \"isVerified\": false,\n        \"verificationComments\": \"Not Verified\",\n        \"__v\": 0\n    },\n    {\n        \"_id\": \"646213fda164c6ab5e04a173\",\n        \"title\": \"Mera Ghar\",\n        \"description\": \"Beautiful \",\n        \"price\": 1000,\n        \"photos\": [\n            \"attachments/aashir.png\"\n        ],\n        \"location\": \"Islamabad\",\n        \"history\": \"only in my use\",\n        \"tax\": 0.17,\n        \"owner\": {\n            \"_id\": \"645faaaaa6b557f30bec0448\",\n            \"username\": \"seller_doe\",\n            \"fullname\": \"John Doe\"\n        },\n        \"buyer\": null,\n        \"isSold\": false,\n        \"isApproved\": false,\n        \"isVerified\": false,\n        \"verificationComments\": \"Not Verified\",\n        \"__v\": 0\n    },\n    {\n        \"_id\": \"64621428aebd2885005ba975\",\n        \"title\": \"Mera Ghar\",\n        \"description\": \"Beautiful \",\n        \"price\": 1000,\n        \"photos\": [\n            \"attachments/aashir.png\"\n        ],\n        \"location\": \"Islamabad\",\n        \"history\": \"only in my use\",\n        \"tax\": 0.17,\n        \"owner\": {\n            \"_id\": \"645faaaaa6b557f30bec0448\",\n            \"username\": \"seller_doe\",\n            \"fullname\": \"John Doe\"\n        },\n        \"buyer\": null,\n        \"isSold\": false,\n        \"isApproved\": false,\n        \"isVerified\": false,\n        \"verificationComments\": \"Not Verified\",\n        \"__v\": 0\n    },\n    {\n        \"_id\": \"646239df878da2c3f044c9a9\",\n        \"title\": \"Mera Ghar\",\n        \"description\": \"Beautiful \",\n        \"price\": 1000,\n        \"photos\": [],\n        \"location\": \"Islamabad\",\n        \"history\": \"only in my use\",\n        \"tax\": 0.17,\n        \"owner\": {\n            \"_id\": \"645faaaaa6b557f30bec0448\",\n            \"username\": \"seller_doe\",\n            \"fullname\": \"John Doe\"\n        },\n        \"buyer\": null,\n        \"isSold\": false,\n        \"isApproved\": false,\n        \"isVerified\": false,\n        \"verificationComments\": \"Not Verified\",\n        \"__v\": 0\n    },\n    {\n        \"_id\": \"64623a66878da2c3f044c9e2\",\n        \"title\": \"Mera Ghar\",\n        \"description\": \"Beautiful \",\n        \"price\": 1000,\n        \"photos\": [],\n        \"location\": \"Islamabad\",\n        \"history\": \"only in my use\",\n        \"tax\": 0.17,\n        \"owner\": {\n            \"_id\": \"645faaaaa6b557f30bec0448\",\n            \"username\": \"seller_doe\",\n            \"fullname\": \"John Doe\"\n        },\n        \"buyer\": null,\n        \"isSold\": false,\n        \"isApproved\": false,\n        \"isVerified\": false,\n        \"verificationComments\": \"Not Verified\",\n        \"__v\": 0\n    },\n    {\n        \"_id\": \"64623b15878da2c3f044c9eb\",\n        \"title\": \"Mera Ghar\",\n        \"description\": \"Beautiful \",\n        \"price\": 1000,\n        \"photos\": [],\n        \"location\": \"Islamabad\",\n        \"history\": \"only in my use\",\n        \"tax\": 0.17,\n        \"owner\": {\n            \"_id\": \"645faaaaa6b557f30bec0448\",\n            \"username\": \"seller_doe\",\n            \"fullname\": \"John Doe\"\n        },\n        \"buyer\": null,\n        \"isSold\": false,\n        \"isApproved\": false,\n        \"isVerified\": false,\n        \"verificationComments\": \"Not Verified\",\n        \"__v\": 0\n    },\n    {\n        \"_id\": \"64623f2e77dbce36a506b4a0\",\n        \"title\": \"Mera Ghar\",\n        \"description\": \"Beautiful \",\n        \"price\": 1000,\n        \"photos\": [],\n        \"location\": \"Islamabad\",\n        \"history\": \"only in my use\",\n        \"tax\": 0.17,\n        \"owner\": {\n            \"_id\": \"645faaaaa6b557f30bec0448\",\n            \"username\": \"seller_doe\",\n            \"fullname\": \"John Doe\"\n        },\n        \"buyer\": null,\n        \"isSold\": false,\n        \"isApproved\": false,\n        \"isVerified\": false,\n        \"verificationComments\": \"Not Verified\",\n        \"__v\": 0\n    }\n]"
+				}
+			]
+		},
+		{
+			"name": "Search Property by Owner",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:3003/api/properties/owner/645faaaaa6b557f30bec0448",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3003",
+					"path": [
+						"api",
+						"properties",
+						"owner",
+						"645faaaaa6b557f30bec0448"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "Search Property by Owner",
+					"originalRequest": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:3003/api/properties/owner/645faaaaa6b557f30bec0448",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3003",
+							"path": [
+								"api",
+								"properties",
+								"owner",
+								"645faaaaa6b557f30bec0448"
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "X-Powered-By",
+							"value": "Express"
+						},
+						{
+							"key": "Access-Control-Allow-Origin",
+							"value": "*"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json; charset=utf-8"
+						},
+						{
+							"key": "Content-Length",
+							"value": "3070"
+						},
+						{
+							"key": "ETag",
+							"value": "W/\"bfe-iZJ//bRjti/bE5ih7gzq/3jhhBw\""
+						},
+						{
+							"key": "Date",
+							"value": "Mon, 15 May 2023 14:20:14 GMT"
+						},
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						},
+						{
+							"key": "Keep-Alive",
+							"value": "timeout=5"
+						}
+					],
+					"cookie": [],
+					"body": "[\n    {\n        \"_id\": \"646213a0b303ee24355b588d\",\n        \"title\": \"Mera Ghar\",\n        \"description\": \"Beautiful \",\n        \"price\": 1000,\n        \"photos\": [\n            \"attachments/aashir.png\"\n        ],\n        \"location\": \"Islamabad\",\n        \"history\": \"only in my use\",\n        \"tax\": 0.17,\n        \"owner\": {\n            \"_id\": \"645faaaaa6b557f30bec0448\",\n            \"username\": \"seller_doe\",\n            \"fullname\": \"John Doe\"\n        },\n        \"buyer\": \"646221b405bba1d55bea077d\",\n        \"isSold\": true,\n        \"isApproved\": false,\n        \"isVerified\": false,\n        \"verificationComments\": \"Not Verified\",\n        \"__v\": 0\n    },\n    {\n        \"_id\": \"646213d21614ed684c9f5124\",\n        \"title\": \"Mera Ghar\",\n        \"description\": \"Beautiful \",\n        \"price\": 1000,\n        \"photos\": [\n            \"attachments/aashir.png\"\n        ],\n        \"location\": \"Islamabad\",\n        \"history\": \"only in my use\",\n        \"tax\": 0.17,\n        \"owner\": {\n            \"_id\": \"645faaaaa6b557f30bec0448\",\n            \"username\": \"seller_doe\",\n            \"fullname\": \"John Doe\"\n        },\n        \"buyer\": null,\n        \"isSold\": false,\n        \"isApproved\": false,\n        \"isVerified\": false,\n        \"verificationComments\": \"Not Verified\",\n        \"__v\": 0\n    },\n    {\n        \"_id\": \"646213fda164c6ab5e04a173\",\n        \"title\": \"Mera Ghar\",\n        \"description\": \"Beautiful \",\n        \"price\": 1000,\n        \"photos\": [\n            \"attachments/aashir.png\"\n        ],\n        \"location\": \"Islamabad\",\n        \"history\": \"only in my use\",\n        \"tax\": 0.17,\n        \"owner\": {\n            \"_id\": \"645faaaaa6b557f30bec0448\",\n            \"username\": \"seller_doe\",\n            \"fullname\": \"John Doe\"\n        },\n        \"buyer\": null,\n        \"isSold\": false,\n        \"isApproved\": false,\n        \"isVerified\": false,\n        \"verificationComments\": \"Not Verified\",\n        \"__v\": 0\n    },\n    {\n        \"_id\": \"64621428aebd2885005ba975\",\n        \"title\": \"Mera Ghar\",\n        \"description\": \"Beautiful \",\n        \"price\": 1000,\n        \"photos\": [\n            \"attachments/aashir.png\"\n        ],\n        \"location\": \"Islamabad\",\n        \"history\": \"only in my use\",\n        \"tax\": 0.17,\n        \"owner\": {\n            \"_id\": \"645faaaaa6b557f30bec0448\",\n            \"username\": \"seller_doe\",\n            \"fullname\": \"John Doe\"\n        },\n        \"buyer\": null,\n        \"isSold\": false,\n        \"isApproved\": false,\n        \"isVerified\": false,\n        \"verificationComments\": \"Not Verified\",\n        \"__v\": 0\n    },\n    {\n        \"_id\": \"646239df878da2c3f044c9a9\",\n        \"title\": \"Mera Ghar\",\n        \"description\": \"Beautiful \",\n        \"price\": 1000,\n        \"photos\": [],\n        \"location\": \"Islamabad\",\n        \"history\": \"only in my use\",\n        \"tax\": 0.17,\n        \"owner\": {\n            \"_id\": \"645faaaaa6b557f30bec0448\",\n            \"username\": \"seller_doe\",\n            \"fullname\": \"John Doe\"\n        },\n        \"buyer\": null,\n        \"isSold\": false,\n        \"isApproved\": false,\n        \"isVerified\": false,\n        \"verificationComments\": \"Not Verified\",\n        \"__v\": 0\n    },\n    {\n        \"_id\": \"64623a66878da2c3f044c9e2\",\n        \"title\": \"Mera Ghar\",\n        \"description\": \"Beautiful \",\n        \"price\": 1000,\n        \"photos\": [],\n        \"location\": \"Islamabad\",\n        \"history\": \"only in my use\",\n        \"tax\": 0.17,\n        \"owner\": {\n            \"_id\": \"645faaaaa6b557f30bec0448\",\n            \"username\": \"seller_doe\",\n            \"fullname\": \"John Doe\"\n        },\n        \"buyer\": null,\n        \"isSold\": false,\n        \"isApproved\": false,\n        \"isVerified\": false,\n        \"verificationComments\": \"Not Verified\",\n        \"__v\": 0\n    },\n    {\n        \"_id\": \"64623b15878da2c3f044c9eb\",\n        \"title\": \"Mera Ghar\",\n        \"description\": \"Beautiful \",\n        \"price\": 1000,\n        \"photos\": [],\n        \"location\": \"Islamabad\",\n        \"history\": \"only in my use\",\n        \"tax\": 0.17,\n        \"owner\": {\n            \"_id\": \"645faaaaa6b557f30bec0448\",\n            \"username\": \"seller_doe\",\n            \"fullname\": \"John Doe\"\n        },\n        \"buyer\": null,\n        \"isSold\": false,\n        \"isApproved\": false,\n        \"isVerified\": false,\n        \"verificationComments\": \"Not Verified\",\n        \"__v\": 0\n    },\n    {\n        \"_id\": \"64623f2e77dbce36a506b4a0\",\n        \"title\": \"Mera Ghar\",\n        \"description\": \"Beautiful \",\n        \"price\": 1000,\n        \"photos\": [],\n        \"location\": \"Islamabad\",\n        \"history\": \"only in my use\",\n        \"tax\": 0.17,\n        \"owner\": {\n            \"_id\": \"645faaaaa6b557f30bec0448\",\n            \"username\": \"seller_doe\",\n            \"fullname\": \"John Doe\"\n        },\n        \"buyer\": null,\n        \"isSold\": false,\n        \"isApproved\": false,\n        \"isVerified\": false,\n        \"verificationComments\": \"Not Verified\",\n        \"__v\": 0\n    }\n]"
+				}
+			]
+		},
+		{
+			"name": "Search Property by Title (Keywords) and Location",
+			"request": {
+				"auth": {
+					"type": "noauth"
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:3003/api/properties/search/ghar/islamabad",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3003",
+					"path": [
+						"api",
+						"properties",
+						"search",
+						"ghar",
+						"islamabad"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "Search Property by Title (Keywords) and Location",
+					"originalRequest": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:3003/api/properties/search/ghar/islamabad",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3003",
+							"path": [
+								"api",
+								"properties",
+								"search",
+								"ghar",
+								"islamabad"
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "X-Powered-By",
+							"value": "Express"
+						},
+						{
+							"key": "Access-Control-Allow-Origin",
+							"value": "*"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json; charset=utf-8"
+						},
+						{
+							"key": "Content-Length",
+							"value": "3070"
+						},
+						{
+							"key": "ETag",
+							"value": "W/\"bfe-iZJ//bRjti/bE5ih7gzq/3jhhBw\""
+						},
+						{
+							"key": "Date",
+							"value": "Mon, 15 May 2023 14:20:21 GMT"
+						},
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						},
+						{
+							"key": "Keep-Alive",
+							"value": "timeout=5"
+						}
+					],
+					"cookie": [],
+					"body": "[\n    {\n        \"_id\": \"646213a0b303ee24355b588d\",\n        \"title\": \"Mera Ghar\",\n        \"description\": \"Beautiful \",\n        \"price\": 1000,\n        \"photos\": [\n            \"attachments/aashir.png\"\n        ],\n        \"location\": \"Islamabad\",\n        \"history\": \"only in my use\",\n        \"tax\": 0.17,\n        \"owner\": {\n            \"_id\": \"645faaaaa6b557f30bec0448\",\n            \"username\": \"seller_doe\",\n            \"fullname\": \"John Doe\"\n        },\n        \"buyer\": \"646221b405bba1d55bea077d\",\n        \"isSold\": true,\n        \"isApproved\": false,\n        \"isVerified\": false,\n        \"verificationComments\": \"Not Verified\",\n        \"__v\": 0\n    },\n    {\n        \"_id\": \"646213d21614ed684c9f5124\",\n        \"title\": \"Mera Ghar\",\n        \"description\": \"Beautiful \",\n        \"price\": 1000,\n        \"photos\": [\n            \"attachments/aashir.png\"\n        ],\n        \"location\": \"Islamabad\",\n        \"history\": \"only in my use\",\n        \"tax\": 0.17,\n        \"owner\": {\n            \"_id\": \"645faaaaa6b557f30bec0448\",\n            \"username\": \"seller_doe\",\n            \"fullname\": \"John Doe\"\n        },\n        \"buyer\": null,\n        \"isSold\": false,\n        \"isApproved\": false,\n        \"isVerified\": false,\n        \"verificationComments\": \"Not Verified\",\n        \"__v\": 0\n    },\n    {\n        \"_id\": \"646213fda164c6ab5e04a173\",\n        \"title\": \"Mera Ghar\",\n        \"description\": \"Beautiful \",\n        \"price\": 1000,\n        \"photos\": [\n            \"attachments/aashir.png\"\n        ],\n        \"location\": \"Islamabad\",\n        \"history\": \"only in my use\",\n        \"tax\": 0.17,\n        \"owner\": {\n            \"_id\": \"645faaaaa6b557f30bec0448\",\n            \"username\": \"seller_doe\",\n            \"fullname\": \"John Doe\"\n        },\n        \"buyer\": null,\n        \"isSold\": false,\n        \"isApproved\": false,\n        \"isVerified\": false,\n        \"verificationComments\": \"Not Verified\",\n        \"__v\": 0\n    },\n    {\n        \"_id\": \"64621428aebd2885005ba975\",\n        \"title\": \"Mera Ghar\",\n        \"description\": \"Beautiful \",\n        \"price\": 1000,\n        \"photos\": [\n            \"attachments/aashir.png\"\n        ],\n        \"location\": \"Islamabad\",\n        \"history\": \"only in my use\",\n        \"tax\": 0.17,\n        \"owner\": {\n            \"_id\": \"645faaaaa6b557f30bec0448\",\n            \"username\": \"seller_doe\",\n            \"fullname\": \"John Doe\"\n        },\n        \"buyer\": null,\n        \"isSold\": false,\n        \"isApproved\": false,\n        \"isVerified\": false,\n        \"verificationComments\": \"Not Verified\",\n        \"__v\": 0\n    },\n    {\n        \"_id\": \"646239df878da2c3f044c9a9\",\n        \"title\": \"Mera Ghar\",\n        \"description\": \"Beautiful \",\n        \"price\": 1000,\n        \"photos\": [],\n        \"location\": \"Islamabad\",\n        \"history\": \"only in my use\",\n        \"tax\": 0.17,\n        \"owner\": {\n            \"_id\": \"645faaaaa6b557f30bec0448\",\n            \"username\": \"seller_doe\",\n            \"fullname\": \"John Doe\"\n        },\n        \"buyer\": null,\n        \"isSold\": false,\n        \"isApproved\": false,\n        \"isVerified\": false,\n        \"verificationComments\": \"Not Verified\",\n        \"__v\": 0\n    },\n    {\n        \"_id\": \"64623a66878da2c3f044c9e2\",\n        \"title\": \"Mera Ghar\",\n        \"description\": \"Beautiful \",\n        \"price\": 1000,\n        \"photos\": [],\n        \"location\": \"Islamabad\",\n        \"history\": \"only in my use\",\n        \"tax\": 0.17,\n        \"owner\": {\n            \"_id\": \"645faaaaa6b557f30bec0448\",\n            \"username\": \"seller_doe\",\n            \"fullname\": \"John Doe\"\n        },\n        \"buyer\": null,\n        \"isSold\": false,\n        \"isApproved\": false,\n        \"isVerified\": false,\n        \"verificationComments\": \"Not Verified\",\n        \"__v\": 0\n    },\n    {\n        \"_id\": \"64623b15878da2c3f044c9eb\",\n        \"title\": \"Mera Ghar\",\n        \"description\": \"Beautiful \",\n        \"price\": 1000,\n        \"photos\": [],\n        \"location\": \"Islamabad\",\n        \"history\": \"only in my use\",\n        \"tax\": 0.17,\n        \"owner\": {\n            \"_id\": \"645faaaaa6b557f30bec0448\",\n            \"username\": \"seller_doe\",\n            \"fullname\": \"John Doe\"\n        },\n        \"buyer\": null,\n        \"isSold\": false,\n        \"isApproved\": false,\n        \"isVerified\": false,\n        \"verificationComments\": \"Not Verified\",\n        \"__v\": 0\n    },\n    {\n        \"_id\": \"64623f2e77dbce36a506b4a0\",\n        \"title\": \"Mera Ghar\",\n        \"description\": \"Beautiful \",\n        \"price\": 1000,\n        \"photos\": [],\n        \"location\": \"Islamabad\",\n        \"history\": \"only in my use\",\n        \"tax\": 0.17,\n        \"owner\": {\n            \"_id\": \"645faaaaa6b557f30bec0448\",\n            \"username\": \"seller_doe\",\n            \"fullname\": \"John Doe\"\n        },\n        \"buyer\": null,\n        \"isSold\": false,\n        \"isApproved\": false,\n        \"isVerified\": false,\n        \"verificationComments\": \"Not Verified\",\n        \"__v\": 0\n    }\n]"
+				}
+			]
+		},
+		{
+			"name": "Get Messages b/w a sender and a reciever",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6InRlc3RhZG1pbl9kb2UiLCJpZCI6IjY0NjIyMjE5MDViYmExZDU1YmVhMDc4NSIsImlhdCI6MTY4NDE1NjA0N30.xze4qXtXBzSinjUZ0fEttgjlc32bEtL4p8cwrpWs29w",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:3003/api/messages/645faac6a6b557f30bec044e/645faaaaa6b557f30bec0448",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3003",
+					"path": [
+						"api",
+						"messages",
+						"645faac6a6b557f30bec044e",
+						"645faaaaa6b557f30bec0448"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "Get Messages b/w a sender and a reciever",
+					"originalRequest": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:3003/api/messages/645faac6a6b557f30bec044e/645faaaaa6b557f30bec0448",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3003",
+							"path": [
+								"api",
+								"messages",
+								"645faac6a6b557f30bec044e",
+								"645faaaaa6b557f30bec0448"
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "X-Powered-By",
+							"value": "Express"
+						},
+						{
+							"key": "Access-Control-Allow-Origin",
+							"value": "*"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json; charset=utf-8"
+						},
+						{
+							"key": "Content-Length",
+							"value": "477"
+						},
+						{
+							"key": "ETag",
+							"value": "W/\"1dd-0pnclB5N9T7XQuBgEsGLQPVK/E4\""
+						},
+						{
+							"key": "Date",
+							"value": "Mon, 15 May 2023 14:20:28 GMT"
+						},
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						},
+						{
+							"key": "Keep-Alive",
+							"value": "timeout=5"
+						}
+					],
+					"cookie": [],
+					"body": "[\n    {\n        \"_id\": \"6461e8a18ba584461a29cc10\",\n        \"sender\": \"645faac6a6b557f30bec044e\",\n        \"receiver\": \"645faaaaa6b557f30bec0448\",\n        \"content\": \"hello\",\n        \"dateTime\": \"2023-05-15T08:09:05.812Z\",\n        \"attachments\": [\n            \"attachments/chess.png\"\n        ],\n        \"isRead\": false,\n        \"__v\": 0,\n        \"isArchived\": true\n    },\n    {\n        \"_id\": \"6461ed343d08646917cdb545\",\n        \"sender\": \"645faac6a6b557f30bec044e\",\n        \"receiver\": \"645faaaaa6b557f30bec0448\",\n        \"content\": \"helloSimple\",\n        \"dateTime\": \"2023-05-15T08:28:36.689Z\",\n        \"attachments\": [],\n        \"isRead\": false,\n        \"isArchived\": false,\n        \"__v\": 0\n    }\n]"
+				}
+			]
+		},
+		{
+			"name": "Search In Messages based on Keyword",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:3003/api/messages/search?keyword=hello",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3003",
+					"path": [
+						"api",
+						"messages",
+						"search"
+					],
+					"query": [
+						{
+							"key": "keyword",
+							"value": "hello"
+						}
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "Search In Messages based on Keyword",
+					"originalRequest": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:3003/api/messages/search?keyword=hello",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3003",
+							"path": [
+								"api",
+								"messages",
+								"search"
+							],
+							"query": [
+								{
+									"key": "keyword",
+									"value": "hello"
+								}
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "X-Powered-By",
+							"value": "Express"
+						},
+						{
+							"key": "Access-Control-Allow-Origin",
+							"value": "*"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json; charset=utf-8"
+						},
+						{
+							"key": "Content-Length",
+							"value": "650"
+						},
+						{
+							"key": "ETag",
+							"value": "W/\"28a-SHPH77yMwQb9b41bzn86cyWYM2E\""
+						},
+						{
+							"key": "Date",
+							"value": "Mon, 15 May 2023 14:20:34 GMT"
+						},
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						},
+						{
+							"key": "Keep-Alive",
+							"value": "timeout=5"
+						}
+					],
+					"cookie": [],
+					"body": "[\n    {\n        \"isArchived\": false,\n        \"_id\": \"645f9ed31bdddcdee4da395a\",\n        \"content\": \"hello\",\n        \"dateTime\": \"2023-05-13T14:29:39.681Z\",\n        \"attachments\": [\n            \"attachments/chess.png\"\n        ],\n        \"isRead\": false,\n        \"__v\": 0\n    },\n    {\n        \"_id\": \"6461e8a18ba584461a29cc10\",\n        \"sender\": \"645faac6a6b557f30bec044e\",\n        \"receiver\": \"645faaaaa6b557f30bec0448\",\n        \"content\": \"hello\",\n        \"dateTime\": \"2023-05-15T08:09:05.812Z\",\n        \"attachments\": [\n            \"attachments/chess.png\"\n        ],\n        \"isRead\": false,\n        \"__v\": 0,\n        \"isArchived\": true\n    },\n    {\n        \"_id\": \"6461ed343d08646917cdb545\",\n        \"sender\": \"645faac6a6b557f30bec044e\",\n        \"receiver\": \"645faaaaa6b557f30bec0448\",\n        \"content\": \"helloSimple\",\n        \"dateTime\": \"2023-05-15T08:28:36.689Z\",\n        \"attachments\": [],\n        \"isRead\": false,\n        \"isArchived\": false,\n        \"__v\": 0\n    }\n]"
+				}
+			]
+		},
+		{
+			"name": "Get All Appointments of a Seller",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:3003/api/appointments/seller/645faaaaa6b557f30bec0448",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3003",
+					"path": [
+						"api",
+						"appointments",
+						"seller",
+						"645faaaaa6b557f30bec0448"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "Get All Appointments of a Seller",
+					"originalRequest": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:3003/api/appointments/seller/645faaaaa6b557f30bec0448",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3003",
+							"path": [
+								"api",
+								"appointments",
+								"seller",
+								"645faaaaa6b557f30bec0448"
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "X-Powered-By",
+							"value": "Express"
+						},
+						{
+							"key": "Access-Control-Allow-Origin",
+							"value": "*"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json; charset=utf-8"
+						},
+						{
+							"key": "Content-Length",
+							"value": "1228"
+						},
+						{
+							"key": "ETag",
+							"value": "W/\"4cc-MvU1Q75EIdHOjSpdrMiMhxaljF0\""
+						},
+						{
+							"key": "Date",
+							"value": "Mon, 15 May 2023 14:20:41 GMT"
+						},
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						},
+						{
+							"key": "Keep-Alive",
+							"value": "timeout=5"
+						}
+					],
+					"cookie": [],
+					"body": "[\n    {\n        \"_id\": \"64623499baac0840fc00c6e7\",\n        \"buyer\": {\n            \"_id\": \"645faac6a6b557f30bec044e\"\n        },\n        \"seller\": \"645faaaaa6b557f30bec0448\",\n        \"property\": {\n            \"_id\": \"64621428aebd2885005ba975\",\n            \"title\": \"Mera Ghar\"\n        },\n        \"dateTime\": \"2023-05-15T13:33:13.148Z\",\n        \"status\": \"cancelled\",\n        \"__v\": 0\n    },\n    {\n        \"_id\": \"646235de878da2c3f044c99a\",\n        \"buyer\": {\n            \"_id\": \"645faac6a6b557f30bec044e\"\n        },\n        \"seller\": \"645faaaaa6b557f30bec0448\",\n        \"property\": {\n            \"_id\": \"64621428aebd2885005ba975\",\n            \"title\": \"Mera Ghar\"\n        },\n        \"dateTime\": \"2023-05-15T13:38:38.331Z\",\n        \"status\": \"pending\",\n        \"__v\": 0\n    },\n    {\n        \"_id\": \"646239e1878da2c3f044c9be\",\n        \"buyer\": {\n            \"_id\": \"645faac6a6b557f30bec044e\"\n        },\n        \"seller\": \"645faaaaa6b557f30bec0448\",\n        \"property\": {\n            \"_id\": \"64621428aebd2885005ba975\",\n            \"title\": \"Mera Ghar\"\n        },\n        \"dateTime\": \"2023-05-15T13:55:45.237Z\",\n        \"status\": \"pending\",\n        \"__v\": 0\n    },\n    {\n        \"_id\": \"64623b17878da2c3f044ca00\",\n        \"buyer\": {\n            \"_id\": \"645faac6a6b557f30bec044e\"\n        },\n        \"seller\": \"645faaaaa6b557f30bec0448\",\n        \"property\": {\n            \"_id\": \"64621428aebd2885005ba975\",\n            \"title\": \"Mera Ghar\"\n        },\n        \"dateTime\": \"2023-05-15T14:00:55.267Z\",\n        \"status\": \"pending\",\n        \"__v\": 0\n    },\n    {\n        \"_id\": \"64623f7577dbce36a506b4bf\",\n        \"buyer\": {\n            \"_id\": \"645faac6a6b557f30bec044e\"\n        },\n        \"seller\": \"645faaaaa6b557f30bec0448\",\n        \"property\": {\n            \"_id\": \"64621428aebd2885005ba975\",\n            \"title\": \"Mera Ghar\"\n        },\n        \"dateTime\": \"2023-05-15T14:19:33.744Z\",\n        \"status\": \"pending\",\n        \"__v\": 0\n    }\n]"
+				}
+			]
+		},
+		{
+			"name": "Get All Appointments of a Buyer",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:3003/api/appointments/buyer/645faac6a6b557f30bec044e",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3003",
+					"path": [
+						"api",
+						"appointments",
+						"buyer",
+						"645faac6a6b557f30bec044e"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "Get All Appointments of a Buyer",
+					"originalRequest": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:3003/api/appointments/buyer/645faac6a6b557f30bec044e",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3003",
+							"path": [
+								"api",
+								"appointments",
+								"buyer",
+								"645faac6a6b557f30bec044e"
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "X-Powered-By",
+							"value": "Express"
+						},
+						{
+							"key": "Access-Control-Allow-Origin",
+							"value": "*"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json; charset=utf-8"
+						},
+						{
+							"key": "Content-Length",
+							"value": "1228"
+						},
+						{
+							"key": "ETag",
+							"value": "W/\"4cc-WVveZ3radAVfXTBvtDi4m3ky09w\""
+						},
+						{
+							"key": "Date",
+							"value": "Mon, 15 May 2023 14:20:48 GMT"
+						},
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						},
+						{
+							"key": "Keep-Alive",
+							"value": "timeout=5"
+						}
+					],
+					"cookie": [],
+					"body": "[\n    {\n        \"_id\": \"64623499baac0840fc00c6e7\",\n        \"buyer\": \"645faac6a6b557f30bec044e\",\n        \"seller\": {\n            \"_id\": \"645faaaaa6b557f30bec0448\"\n        },\n        \"property\": {\n            \"_id\": \"64621428aebd2885005ba975\",\n            \"title\": \"Mera Ghar\"\n        },\n        \"dateTime\": \"2023-05-15T13:33:13.148Z\",\n        \"status\": \"cancelled\",\n        \"__v\": 0\n    },\n    {\n        \"_id\": \"646235de878da2c3f044c99a\",\n        \"buyer\": \"645faac6a6b557f30bec044e\",\n        \"seller\": {\n            \"_id\": \"645faaaaa6b557f30bec0448\"\n        },\n        \"property\": {\n            \"_id\": \"64621428aebd2885005ba975\",\n            \"title\": \"Mera Ghar\"\n        },\n        \"dateTime\": \"2023-05-15T13:38:38.331Z\",\n        \"status\": \"pending\",\n        \"__v\": 0\n    },\n    {\n        \"_id\": \"646239e1878da2c3f044c9be\",\n        \"buyer\": \"645faac6a6b557f30bec044e\",\n        \"seller\": {\n            \"_id\": \"645faaaaa6b557f30bec0448\"\n        },\n        \"property\": {\n            \"_id\": \"64621428aebd2885005ba975\",\n            \"title\": \"Mera Ghar\"\n        },\n        \"dateTime\": \"2023-05-15T13:55:45.237Z\",\n        \"status\": \"pending\",\n        \"__v\": 0\n    },\n    {\n        \"_id\": \"64623b17878da2c3f044ca00\",\n        \"buyer\": \"645faac6a6b557f30bec044e\",\n        \"seller\": {\n            \"_id\": \"645faaaaa6b557f30bec0448\"\n        },\n        \"property\": {\n            \"_id\": \"64621428aebd2885005ba975\",\n            \"title\": \"Mera Ghar\"\n        },\n        \"dateTime\": \"2023-05-15T14:00:55.267Z\",\n        \"status\": \"pending\",\n        \"__v\": 0\n    },\n    {\n        \"_id\": \"64623f7577dbce36a506b4bf\",\n        \"buyer\": \"645faac6a6b557f30bec044e\",\n        \"seller\": {\n            \"_id\": \"645faaaaa6b557f30bec0448\"\n        },\n        \"property\": {\n            \"_id\": \"64621428aebd2885005ba975\",\n            \"title\": \"Mera Ghar\"\n        },\n        \"dateTime\": \"2023-05-15T14:19:33.744Z\",\n        \"status\": \"pending\",\n        \"__v\": 0\n    }\n]"
+				}
+			]
+		},
+		{
+			"name": "Edit User",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6ImFkbWluX2RvZSIsImlkIjoiNjQ1ZjczMWNjMjA0MWIyYmRkOWY3MmEzIiwiaWF0IjoxNjg0MTUzMDIyfQ.mq6BAA3McBGkONbrPm9PVNMLU_LZqg82Cwgofc0EBnc",
+							"type": "string"
+						}
+					]
+				},
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"username\": \"changedtest_doe\",\r\n    \"fullname\": \"John Doe\",\r\n    \"password\": \"password123\",\r\n    \"email\":\"changedadmin@exampple.com\",\r\n    \"phone\":\"1234567890111\",\r\n    \"address\": \"123, abc street, xyz city, 12345\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:3003/api/users/645f731cc2041b2bdd9f72a3",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3003",
+					"path": [
+						"api",
+						"users",
+						"645f731cc2041b2bdd9f72a3"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "Edit User",
+					"originalRequest": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"username\": \"customer_doee\",\r\n    \"fullname\": \"John Doe\",\r\n    \"password\": \"password123\",\r\n    \"email\":\"changedadmin@exampple.com\",\r\n    \"phone\":\"1234567890111\",\r\n    \"address\": \"123, abc street, xyz city, 12345\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:3003/api/users/646221e205bba1d55bea0781",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3003",
+							"path": [
+								"api",
+								"users",
+								"646221e205bba1d55bea0781"
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "X-Powered-By",
+							"value": "Express"
+						},
+						{
+							"key": "Access-Control-Allow-Origin",
+							"value": "*"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json; charset=utf-8"
+						},
+						{
+							"key": "Content-Length",
+							"value": "343"
+						},
+						{
+							"key": "ETag",
+							"value": "W/\"157-eozdtGnqaHEk0vOJpR9ahiZjk0w\""
+						},
+						{
+							"key": "Date",
+							"value": "Mon, 15 May 2023 14:23:01 GMT"
+						},
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						},
+						{
+							"key": "Keep-Alive",
+							"value": "timeout=5"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"_id\": \"646221e205bba1d55bea0781\",\n    \"username\": \"customer_doee\",\n    \"fullname\": \"John Doe\",\n    \"email\": \"changedadmin@exampple.com\",\n    \"password\": \"$2b$10$1CQQDCSmF/qvvxaRaIM6auWy0u2pJKu0qicSSpkCZfCZhohnxBs/K\",\n    \"phone\": \"1234567890111\",\n    \"address\": \"123, abc street, xyz city, 12345\",\n    \"role\": \"seller\",\n    \"propertiesOwned\": [],\n    \"propertiesBought\": [],\n    \"wishlist\": [],\n    \"__v\": 0\n}"
+				}
+			]
+		},
+		{
+			"name": "Confirm an Appointment",
+			"protocolProfileBehavior": {
+				"followOriginalHttpMethod": false,
+				"strictSSL": false
+			},
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6ImFkbWluX2RvZSIsImlkIjoiNjQ1ZjczMWNjMjA0MWIyYmRkOWY3MmEzIiwiaWF0IjoxNjg0MTQyODQ4fQ.rwm7ErIjO3z6KGUtpCeYzvVHbRiVtzkitYqd8loixlw",
+							"type": "string"
+						}
+					]
+				},
+				"method": "PUT",
+				"header": [
+					{
+						"key": "height",
+						"value": "174",
+						"type": "text",
+						"disabled": true
+					},
+					{
+						"key": "weight",
+						"value": "90",
+						"type": "text",
+						"disabled": true
+					},
+					{
+						"key": "keyword",
+						"value": "hello",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"sellerId\":\"645faac6a6b557f30bec044e\",\r\n    \"buyerId\":\"645faaaaa6b557f30bec0448\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:3003/api/appointments/6461f8db5e417f3cfc9aa2e9/confirm",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3003",
+					"path": [
+						"api",
+						"appointments",
+						"6461f8db5e417f3cfc9aa2e9",
+						"confirm"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "Confirm an Appointment",
+					"originalRequest": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "height",
+								"value": "174",
+								"type": "text",
+								"disabled": true
+							},
+							{
+								"key": "weight",
+								"value": "90",
+								"type": "text",
+								"disabled": true
+							},
+							{
+								"key": "keyword",
+								"value": "hello",
+								"type": "text",
+								"disabled": true
+							}
+						],
+						"url": {
+							"raw": "http://localhost:3003/api/appointments/6461f8db5e417f3cfc9aa2e9/confirm",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3003",
+							"path": [
+								"api",
+								"appointments",
+								"6461f8db5e417f3cfc9aa2e9",
+								"confirm"
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "X-Powered-By",
+							"value": "Express"
+						},
+						{
+							"key": "Access-Control-Allow-Origin",
+							"value": "*"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json; charset=utf-8"
+						},
+						{
+							"key": "Content-Length",
+							"value": "210"
+						},
+						{
+							"key": "ETag",
+							"value": "W/\"d2-RdoyCqPltDBdUGKGgPno7vVSaYA\""
+						},
+						{
+							"key": "Date",
+							"value": "Mon, 15 May 2023 14:24:00 GMT"
+						},
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						},
+						{
+							"key": "Keep-Alive",
+							"value": "timeout=5"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"_id\": \"6461f8db5e417f3cfc9aa2e9\",\n    \"buyer\": \"645faaaaa6b557f30bec0448\",\n    \"seller\": \"645faac6a6b557f30bec044e\",\n    \"property\": \"646213a0b303ee24355b588d\",\n    \"dateTime\": \"2023-05-15T09:18:19.242Z\",\n    \"status\": \"confirmed\",\n    \"__v\": 0\n}"
+				}
+			]
+		},
+		{
+			"name": "Buy a Property",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6InRlc3RjdXN0b21lcl9kb2UiLCJpZCI6IjY0NjIyMWI0MDViYmExZDU1YmVhMDc3ZCIsImlhdCI6MTY4NDE1MzgwMH0.G7cUvmQgQE6-Nx9vBCJCSVIhDTjdkNpPT7IK6yQhNOM",
+							"type": "string"
+						}
+					]
+				},
+				"method": "PUT",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:3003/api/properties/buy/646213a0b303ee24355b588d",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3003",
+					"path": [
+						"api",
+						"properties",
+						"buy",
+						"646213a0b303ee24355b588d"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "Buy a Property",
+					"originalRequest": {
+						"method": "PUT",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:3003/api/properties/buy/646213a0b303ee24355b588d",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3003",
+							"path": [
+								"api",
+								"properties",
+								"buy",
+								"646213a0b303ee24355b588d"
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "X-Powered-By",
+							"value": "Express"
+						},
+						{
+							"key": "Access-Control-Allow-Origin",
+							"value": "*"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json; charset=utf-8"
+						},
+						{
+							"key": "Content-Length",
+							"value": "359"
+						},
+						{
+							"key": "ETag",
+							"value": "W/\"167-8CfI5ZnWph2w3Hq6BkTIgIJODuk\""
+						},
+						{
+							"key": "Date",
+							"value": "Mon, 15 May 2023 14:24:40 GMT"
+						},
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						},
+						{
+							"key": "Keep-Alive",
+							"value": "timeout=5"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"_id\": \"646213a0b303ee24355b588d\",\n    \"title\": \"Mera Ghar\",\n    \"description\": \"Beautiful \",\n    \"price\": 1000,\n    \"photos\": [\n        \"attachments/aashir.png\"\n    ],\n    \"location\": \"Islamabad\",\n    \"history\": \"only in my use\",\n    \"tax\": 0.17,\n    \"owner\": \"645faaaaa6b557f30bec0448\",\n    \"buyer\": \"646221b405bba1d55bea077d\",\n    \"isSold\": true,\n    \"isApproved\": false,\n    \"isVerified\": false,\n    \"verificationComments\": \"Not Verified\",\n    \"__v\": 0\n}"
+				}
+			]
+		},
+		{
+			"name": "Confirm An Appointment",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6InRlc3RhZG1pbl9kb2UiLCJpZCI6IjY0NjIyMjE5MDViYmExZDU1YmVhMDc4NSIsImlhdCI6MTY4NDE1NjA0N30.xze4qXtXBzSinjUZ0fEttgjlc32bEtL4p8cwrpWs29w",
+							"type": "string"
+						}
+					]
+				},
+				"method": "PUT",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:3003/api/appointments/64623499baac0840fc00c6e7/confirm",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3003",
+					"path": [
+						"api",
+						"appointments",
+						"64623499baac0840fc00c6e7",
+						"confirm"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "Confirm An Appointment",
+					"originalRequest": {
+						"method": "PUT",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:3003/api/appointments/64623499baac0840fc00c6e7/confirm",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3003",
+							"path": [
+								"api",
+								"appointments",
+								"64623499baac0840fc00c6e7",
+								"confirm"
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "X-Powered-By",
+							"value": "Express"
+						},
+						{
+							"key": "Access-Control-Allow-Origin",
+							"value": "*"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json; charset=utf-8"
+						},
+						{
+							"key": "Content-Length",
+							"value": "210"
+						},
+						{
+							"key": "ETag",
+							"value": "W/\"d2-nnNCVEwub0C8Wl1nWNvUnDnWHCY\""
+						},
+						{
+							"key": "Date",
+							"value": "Mon, 15 May 2023 14:24:18 GMT"
+						},
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						},
+						{
+							"key": "Keep-Alive",
+							"value": "timeout=5"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"_id\": \"64623499baac0840fc00c6e7\",\n    \"buyer\": \"645faac6a6b557f30bec044e\",\n    \"seller\": \"645faaaaa6b557f30bec0448\",\n    \"property\": \"64621428aebd2885005ba975\",\n    \"dateTime\": \"2023-05-15T13:33:13.148Z\",\n    \"status\": \"confirmed\",\n    \"__v\": 0\n}"
+				}
+			]
+		},
+		{
+			"name": "Cancel An Appointment",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6InRlc3RhZG1pbl9kb2UiLCJpZCI6IjY0NjIyMjE5MDViYmExZDU1YmVhMDc4NSIsImlhdCI6MTY4NDE1NjA0N30.xze4qXtXBzSinjUZ0fEttgjlc32bEtL4p8cwrpWs29w",
+							"type": "string"
+						}
+					]
+				},
+				"method": "PUT",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:3003/api/appointments/64623499baac0840fc00c6e7/cancel",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3003",
+					"path": [
+						"api",
+						"appointments",
+						"64623499baac0840fc00c6e7",
+						"cancel"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "Cancel An Appointment",
+					"originalRequest": {
+						"method": "PUT",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:3003/api/appointments/64623499baac0840fc00c6e7/cancel",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3003",
+							"path": [
+								"api",
+								"appointments",
+								"64623499baac0840fc00c6e7",
+								"cancel"
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "X-Powered-By",
+							"value": "Express"
+						},
+						{
+							"key": "Access-Control-Allow-Origin",
+							"value": "*"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json; charset=utf-8"
+						},
+						{
+							"key": "Content-Length",
+							"value": "210"
+						},
+						{
+							"key": "ETag",
+							"value": "W/\"d2-jercQ2//tMaTuUnYMmmYEOxl98U\""
+						},
+						{
+							"key": "Date",
+							"value": "Mon, 15 May 2023 14:24:28 GMT"
+						},
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						},
+						{
+							"key": "Keep-Alive",
+							"value": "timeout=5"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"_id\": \"64623499baac0840fc00c6e7\",\n    \"buyer\": \"645faac6a6b557f30bec044e\",\n    \"seller\": \"645faaaaa6b557f30bec0448\",\n    \"property\": \"64621428aebd2885005ba975\",\n    \"dateTime\": \"2023-05-15T13:33:13.148Z\",\n    \"status\": \"cancelled\",\n    \"__v\": 0\n}"
+				}
+			]
+		}
+	]
+}

@@ -11,7 +11,18 @@ appointmentRouter.post("/", async (request, response) => {
     const sellerfound = await User.findById(sellerId);
     const buyerfound = await User.findById(buyerId);
     const propertyfound = await Property.findById(propertyId);
-
+    const propertyOwner = await User.findById(propertyfound.owner._id);
+    if(!sellerfound || !buyerfound || !propertyfound){
+      return response.status(404).json({ error: "Seller, buyer or property not found." });
+    }
+    console.log(sellerfound)
+    console.log(propertyOwner)
+    console.log(sellerfound._id)
+    console.log(propertyOwner._id)
+    if(!(sellerfound._id.equals( propertyOwner._id))){
+      return response.status(401).json({ error: "Seller is not the owner of the property." });
+    }
+  
     const appointment = new Appointment({
       buyer: buyerfound._id,
       seller: sellerfound._id,
