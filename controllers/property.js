@@ -83,6 +83,115 @@ propertyRouter.get("/search/:query/:location", async (request, response) => {
   }
 });
 
+//list a new property
+propertyRouter.post(
+  "/",
+  upload.array("attachments"),
+  async (request, response) => {
+    try {
+      const { title, description, price, location, history, tax } =
+        request.body;
+      const decodedToken = jwt.verify(request.token, process.env.SECRET);
+      if (!request.token || !decodedToken.id) {
+        return response.status(401).json({ error: "token missing or invalid" });
+      }
+      const user = await User.findById(decodedToken.id);
+
+      if (!user) {
+        return response.status(401).json({ error: "user not found" });
+      } else if (user.role !== "seller") {
+        return response.status(401).json({ error: "user not authorized" });
+      }
+      const attachments = request.files.map((file) =>
+        file.path.replace(/\\/g, "/"),
+      );
+      const property = new Property({
+        title,
+        description,
+        price,
+        photos: attachments,
+        location,
+        history,
+        tax,
+        owner: user._id,
+        buyer: null,
+        isSold: false,
+      });
+      console.log(property);
+      const savedProperty = await property.save();
+      user.propertiesOwned = user.propertiesOwned.concat(savedProperty._id);
+      console.log(user);
+      await user.save();
+      response.json(savedProperty);
+    } catch (error) {
+      console.log(error);
+      response.status(404).end();
+    }
+  },
+);
+
+
+//delete a property
+propertyRouter.delete("/:id", async (request, response) => {
+  try {
+    const property = await Property.findById(request.params.id);
+    const decodedToken = jwt.verify(request.token, process.env.SECRET);
+    if (!request.token || !decodedToken.id) {
+      return response.status(401).json({ error: "token missing or invalid" });
+    }
+    const user = await User.findById(decodedToken.id);
+    if (!user) {
+      return response.status(401).json({ error: "user not found" });
+    } else if (user.role !== "seller" || user.role !== "admin") {
+      return response.status(401).json({ error: "user not authorized" });
+    }
+    if (property && property.owner.toString() === user._id.toString()) {
+      await Property.findByIdAndRemove(request.params.id);
+      response.status(204).end();
+    } else {
+      response.status(404).end();
+    }
+  } catch (error) {
+    response.status(404).end();
+  }
+});
+
+
+//edit a property
+propertyRouter.put("/:id", async (request, response) => {
+  try {
+    const { title, description, price, photos, location, history, tax } =
+      request.body;
+    const decodedToken = jwt.verify(request.token, process.env.SECRET);
+    if (!request.token || !decodedToken.id) {
+      return response.status(401).json({ error: "token missing or invalid" });
+    }
+    const user = await User.findById(decodedToken.id);
+    if (!user) {
+      return response.status(401).json({ error: "user not found" });
+    } else if (user.role !== "seller" || user.role !== "admin") {
+      return response.status(401).json({ error: "user not authorized" });
+    }
+    const property = await Property.findByIdAndUpdate(
+      request.params.id,
+      {
+        title,
+        description,
+        price,
+        photos,
+        location,
+        history,
+        tax,
+        buyer: null,
+        isSold: false,
+      },
+      { new: true },
+    );
+    response.json(property);
+  } catch (error) {
+    response.status(404).end();
+  }
+});
 
 
 propertyRouter.put("/buy/:id", async (request, response) => {
