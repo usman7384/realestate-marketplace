@@ -248,65 +248,6 @@ propertyRouter.put("/cancel/:id", async (request, response) => {
   }
 });
 
-propertyRouter.put("/:id/approve", async (request, response) => {
-  try {
-    const decodedToken = jwt.verify(request.token, process.env.SECRET);
-    if (!request.token || !decodedToken.id) {
-      return response.status(401).json({ error: "token missing or invalid" });
-    }
-    const user = await User.findById(decodedToken.id);
-    if (!user) {
-      return response.status(401).json({ error: "user not found" });
-    } else if (user.role !== "admin") {
-      return response.status(401).json({ error: "user not authorized" });
-    }
-
-    const propertyId = request.params.id;
-    const property = await Property.findById(propertyId);
-
-    if (!property) {
-      return response.status(404).json({ error: "Property not found." });
-    }
-
-    property.isApproved = true;
-    property.verificationComments = "Property approved by admin";
-
-    const savedProperty = await property.save();
-    response.json(savedProperty);
-  } catch (error) {
-    response.status(500).json({ error: "Failed to approve property." });
-  }
-});
-
-propertyRouter.put("/:id/verify", async (request, response) => {
-  try {
-    const decodedToken = jwt.verify(request.token, process.env.SECRET);
-    if (!request.token || !decodedToken.id) {
-      return response.status(401).json({ error: "token missing or invalid" });
-    }
-    const user = await User.findById(decodedToken.id);
-    if (!user) {
-      return response.status(401).json({ error: "user not found" });
-    } else if (user.role !== "admin") {
-      return response.status(401).json({ error: "user not authorized" });
-    }
-
-    const propertyId = request.params.id;
-    const property = await Property.findById(propertyId);
-
-    if (!property) {
-      return response.status(404).json({ error: "Property not found." });
-    }
-
-    property.isVerified = true;
-    property.verificationComments = "Property documents verified";
-
-    const savedProperty = await property.save();
-    response.json(savedProperty);
-  } catch (error) {
-    response.status(500).json({ error: "Failed to verify property." });
-  }
-});
 
 propertyRouter.get("/approved", async (request, response) => {
   try {
