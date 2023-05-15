@@ -1,0 +1,21 @@
+POST http://localhost:3003/api/messages/attachment
+Content-Type: multipart/form-data
+
+--boundary
+Content-Disposition: form-data; name="sender"
+
+sender1
+--boundary
+Content-Disposition: form-data; name="receiver"
+
+receiver2
+--boundary
+Content-Disposition: form-data; name="content"
+
+Hello, how are you?
+--boundary
+Content-Disposition: form-data; name="attachments"; filename="thela.jpg"
+Content-Type: image/jpeg
+
+...binary data of the attachment file...
+--boundary--

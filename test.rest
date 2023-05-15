@@ -1,0 +1,16 @@
+GET  http://localhost:3003/api/users
+Content-Type: application/json
+Authorization: bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6ImFkbWluX2RvZSIsImlkIjoiNjQ1ZjczMWNjMjA0MWIyYmRkOWY3MmEzIiwiaWF0IjoxNjgzOTgzNzYwfQ.gjEmVZYbR4x2lwaGqrXFfLFFY21x9g7LUStG8a34Mos
+# {
+#     "username": "admin_doe",
+#     "password": "password123"
+# }
+
+# {
+#     "username": "customer_doe",
+#     "fullname": "John Doe",
+#     "password": "password123",
+#     "email":"seller@exampple.com",
+#     "phone":"1234567890111",
+#     "address": "123, abc street, xyz city, 12345"
+# }
