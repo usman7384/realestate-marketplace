@@ -166,7 +166,134 @@ SE( P )
     <span class="token keyword">default</span><span class="token operator">:</span> <span class="token string">"pending"</span><span class="token punctuation">,</span>
   <span class="token punctuation">}</span><span class="token punctuation">,</span>
 <span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-</div></div></code></pre><h2 id="Panels" data-id="Panels" style=""><a class="anchor hidden-xs" href="#Panels" title="Panels"><span class="octicon octicon-link"></span></a><span>Panels</span></h2><h3 id="Admin" data-id="Admin" style=""><a class="anchor hidden-xs" href="#Admin" title="Admin"><span class="octicon octicon-link"></span></a><span>Admin</span></h3><hr><h4 id="User-Management" data-id="User-Management"><a class="anchor hidden-xs" href="#User-Management" title="User-Management"><span class="octicon octicon-link"></span></a><span>User Management:</span></h4><pre><code class="javascript hljs"><div class="wrapper"><div class="gutter linenumber"><span></span>
+</div></div></code></pre><h2 id="Middlewares" data-id="Middlewares" style=""><a class="anchor hidden-xs" href="#Middlewares" title="Middlewares"><span class="octicon octicon-link"></span></a><span>Middlewares</span></h2><pre><code class="javascript hljs"><div class="wrapper"><div class="gutter linenumber"><span></span>
+<span></span>
+<span></span>
+<span></span>
+<span></span>
+<span></span>
+<span></span>
+<span></span>
+<span></span>
+<span></span>
+<span></span>
+<span></span>
+<span></span>
+<span></span>
+<span></span>
+<span></span>
+<span></span>
+<span></span>
+<span></span>
+<span></span>
+<span></span>
+<span></span>
+<span></span>
+<span></span>
+<span></span>
+<span></span>
+<span></span>
+<span></span>
+<span></span>
+<span></span>
+<span></span>
+<span></span>
+<span></span>
+<span></span>
+<span></span>
+<span></span>
+<span></span>
+<span></span>
+<span></span>
+<span></span>
+<span></span>
+<span></span>
+<span></span>
+<span></span>
+<span></span>
+<span></span>
+<span></span>
+<span></span></div><div class="code">
+<span class="token comment">// Log Requests to the console</span>
+<span class="token keyword">const</span> <span class="token function-variable function">requestLogger</span> <span class="token operator">=</span> <span class="token punctuation">(</span><span class="token parameter">request<span class="token punctuation">,</span> response<span class="token punctuation">,</span> next</span><span class="token punctuation">)</span> <span class="token operator">=&gt;</span> <span class="token punctuation">{</span>
+  logger<span class="token punctuation">.</span><span class="token function">info</span><span class="token punctuation">(</span><span class="token string">"Method:"</span><span class="token punctuation">,</span> request<span class="token punctuation">.</span>method<span class="token punctuation">)</span><span class="token punctuation">;</span>
+  logger<span class="token punctuation">.</span><span class="token function">info</span><span class="token punctuation">(</span><span class="token string">"Path:  "</span><span class="token punctuation">,</span> request<span class="token punctuation">.</span>path<span class="token punctuation">)</span><span class="token punctuation">;</span>
+  logger<span class="token punctuation">.</span><span class="token function">info</span><span class="token punctuation">(</span><span class="token string">"Body:  "</span><span class="token punctuation">,</span> request<span class="token punctuation">.</span>body<span class="token punctuation">)</span><span class="token punctuation">;</span>
+  logger<span class="token punctuation">.</span><span class="token function">info</span><span class="token punctuation">(</span><span class="token string">"---"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+  <span class="token function">next</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span><span class="token punctuation">;</span>
+
+<span class="token comment">// handle unknown endpoints</span>
+<span class="token keyword">const</span> <span class="token function-variable function">unknownEndpoint</span> <span class="token operator">=</span> <span class="token punctuation">(</span><span class="token parameter">request<span class="token punctuation">,</span> response</span><span class="token punctuation">)</span> <span class="token operator">=&gt;</span> <span class="token punctuation">{</span>
+  response<span class="token punctuation">.</span><span class="token function">status</span><span class="token punctuation">(</span><span class="token number">404</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">send</span><span class="token punctuation">(</span><span class="token punctuation">{</span> <span class="token literal-property property">error</span><span class="token operator">:</span> <span class="token string">"unknown endpoint"</span> <span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span><span class="token punctuation">;</span>
+
+<span class="token comment">//error handling midddleware for specific errors</span>
+<span class="token keyword">const</span> <span class="token function-variable function">errorHandler</span> <span class="token operator">=</span> <span class="token punctuation">(</span><span class="token parameter">error<span class="token punctuation">,</span> request<span class="token punctuation">,</span> response<span class="token punctuation">,</span> next</span><span class="token punctuation">)</span> <span class="token operator">=&gt;</span> <span class="token punctuation">{</span>
+  <span class="token keyword">if</span> <span class="token punctuation">(</span>error<span class="token punctuation">.</span>name <span class="token operator">===</span> <span class="token string">"CastError"</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token keyword">return</span> response<span class="token punctuation">.</span><span class="token function">status</span><span class="token punctuation">(</span><span class="token number">400</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">send</span><span class="token punctuation">(</span><span class="token punctuation">{</span>
+      <span class="token literal-property property">error</span><span class="token operator">:</span> <span class="token string">"malformatted id"</span><span class="token punctuation">,</span>
+    <span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+  <span class="token punctuation">}</span> <span class="token keyword">else</span> <span class="token keyword">if</span> <span class="token punctuation">(</span>error<span class="token punctuation">.</span>name <span class="token operator">===</span> <span class="token string">"ValidationError"</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token keyword">return</span> response<span class="token punctuation">.</span><span class="token function">status</span><span class="token punctuation">(</span><span class="token number">400</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">json</span><span class="token punctuation">(</span><span class="token punctuation">{</span>
+      <span class="token literal-property property">error</span><span class="token operator">:</span> error<span class="token punctuation">.</span>message<span class="token punctuation">,</span>
+    <span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+  <span class="token punctuation">}</span> <span class="token keyword">else</span> <span class="token keyword">if</span> <span class="token punctuation">(</span>error<span class="token punctuation">.</span>name <span class="token operator">===</span> <span class="token string">"JsonWebTokenError"</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token keyword">return</span> response<span class="token punctuation">.</span><span class="token function">status</span><span class="token punctuation">(</span><span class="token number">401</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">json</span><span class="token punctuation">(</span><span class="token punctuation">{</span>
+      <span class="token literal-property property">error</span><span class="token operator">:</span> <span class="token string">"invalid token"</span><span class="token punctuation">,</span>
+    <span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+  <span class="token punctuation">}</span>
+
+  logger<span class="token punctuation">.</span><span class="token function">error</span><span class="token punctuation">(</span>error<span class="token punctuation">.</span>message<span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+  <span class="token function">next</span><span class="token punctuation">(</span>error<span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span><span class="token punctuation">;</span>
+
+<span class="token comment">//token extractor for jwt authentication tokens</span>
+<span class="token keyword">const</span> <span class="token function-variable function">tokenExtractor</span> <span class="token operator">=</span> <span class="token keyword">async</span> <span class="token punctuation">(</span><span class="token parameter">request<span class="token punctuation">,</span> response<span class="token punctuation">,</span> next</span><span class="token punctuation">)</span> <span class="token operator">=&gt;</span> <span class="token punctuation">{</span>
+  <span class="token keyword">const</span> authorization <span class="token operator">=</span> request<span class="token punctuation">.</span><span class="token function">get</span><span class="token punctuation">(</span><span class="token string">"authorization"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+  <span class="token keyword">if</span> <span class="token punctuation">(</span>authorization <span class="token operator">&amp;&amp;</span> authorization<span class="token punctuation">.</span><span class="token function">toLowerCase</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">startsWith</span><span class="token punctuation">(</span><span class="token string">"bearer "</span><span class="token punctuation">)</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    request<span class="token punctuation">.</span>token <span class="token operator">=</span> authorization<span class="token punctuation">.</span><span class="token function">substring</span><span class="token punctuation">(</span><span class="token number">7</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+  <span class="token punctuation">}</span> <span class="token keyword">else</span> <span class="token punctuation">{</span>
+    request<span class="token punctuation">.</span>token <span class="token operator">=</span> <span class="token keyword">null</span><span class="token punctuation">;</span>
+  <span class="token punctuation">}</span>
+  <span class="token function">next</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span><span class="token punctuation">;</span>
+
+
+</div></div></code></pre><h2 id="Panels" data-id="Panels" style=""><a class="anchor hidden-xs" href="#Panels" title="Panels"><span class="octicon octicon-link"></span></a><span>Panels</span></h2><h3 id="Admin-Abdullah-Arif" data-id="Admin-Abdullah-Arif" style=""><a class="anchor hidden-xs" href="#Admin-Abdullah-Arif" title="Admin-Abdullah-Arif"><span class="octicon octicon-link"></span></a><span>Admin (Abdullah Arif)</span></h3><ol>
+<li>
+<p><strong><span>User Management:</span></strong></p>
+<ul>
+<li><span>Sign up as an admin: This endpoint allows creating a new user with the role set as “admin”. The user information such as username, fullname, email, password, phone, and address are provided in the request body. The password is hashed using bcrypt before saving it to the database.</span></li>
+<li><span>Edit user: This endpoint allows updating user information. The user is identified by the </span><code>:id</code><span> parameter in the URL. The updated information such as username, fullname, email, password, phone, and address is provided in the request body. The password is hashed using bcrypt before updating it in the database.</span></li>
+<li><span>Delete a user: This endpoint allows deleting a user. The user is identified by the </span><code>:id</code><span> parameter in the URL. The user can only be deleted if the authenticated user is an admin.</span></li>
+</ul>
+</li>
+<li>
+<p><strong><span>Property Management</span></strong><span>:</span></p>
+<ul>
+<li><span>Delete a property: This endpoint allows deleting a property. The property is identified by the </span><code>:id</code><span> parameter in the URL. The property can only be deleted if the authenticated user is a seller or an admin and if the property is owned by the user.</span></li>
+<li><span>Edit a property: This endpoint allows updating property information. The property is identified by the </span><code>:id</code><span> parameter in the URL. The updated information such as title, description, price, photos, location, history, and tax is provided in the request body. The property can only be updated if the authenticated user is a seller or an admin and if the property is owned by the user.</span></li>
+<li><span>Approve a property: This endpoint allows an admin to approve a property. The property is identified by the </span><code>:id</code><span> parameter in the URL. The property’s </span><code>isApproved</code><span> flag is set to true, indicating that it has been approved by the admin.</span></li>
+<li><span>Verify a property: This endpoint allows an admin to verify the documents of a property. The property is identified by the </span><code>:id</code><span> parameter in the URL. The property’s </span><code>isVerified</code><span> flag is set to true, indicating that the documents have been verified by the admin.</span></li>
+</ul>
+</li>
+<li>
+<p><strong><span>Messages Management</span></strong><span>:</span></p>
+<ul>
+<li><span>Find all messages sent by a sender: This endpoint retrieves all messages sent by a particular sender. The sender’s ID is provided as the </span><code>:sender</code><span> parameter in the URL. The messages are returned in the response.</span></li>
+<li><span>Find all messages received by a receiver: This endpoint retrieves all messages received by a particular receiver. The receiver’s ID is provided as the </span><code>:receiver</code><span> parameter in the URL. The messages are returned in the response.</span></li>
+<li><span>Fetch communication between a sender and receiver: This endpoint retrieves all messages exchanged between a sender and a receiver. The sender’s ID is provided as the </span><code>:sender</code><span> parameter, and the receiver’s ID is provided as the </span><code>:receiver</code><span> parameter in the URL. The messages are returned in the response.</span></li>
+</ul>
+</li>
+<li>
+<p><strong><span>Appointment Management</span></strong><span>:</span></p>
+<ul>
+<li><span>Confirm an appointment: This endpoint allows an admin to confirm an appointment. The appointment is identified by the </span><code>:id</code><span> parameter in the URL. The appointment’s status is updated to “confirmed” in the database.</span></li>
+</ul>
+</li>
+</ol><p><span>These functionalities provide the admin with the ability to manage users, properties, messages, and appointments within the system.</span></p><hr><h4 id="User-Management" data-id="User-Management"><a class="anchor hidden-xs" href="#User-Management" title="User-Management"><span class="octicon octicon-link"></span></a><span>User Management:</span></h4><pre><code class="javascript hljs"><div class="wrapper"><div class="gutter linenumber"><span></span>
 <span></span>
 <span></span>
 <span></span>
@@ -880,7 +1007,52 @@ appointmentRouter<span class="token punctuation">.</span><span class="token func
 <span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
 
 
-</div></div></code></pre><h3 id="Seller" data-id="Seller" style=""><a class="anchor hidden-xs" href="#Seller" title="Seller"><span class="octicon octicon-link"></span></a><span>Seller</span></h3><hr><h4 id="LoginSignup" data-id="LoginSignup"><a class="anchor hidden-xs" href="#LoginSignup" title="LoginSignup"><span class="octicon octicon-link"></span></a><span>Login/Signup:</span></h4><pre><code class="javascript hljs"><div class="wrapper"><div class="gutter linenumber"><span></span>
+</div></div></code></pre><h3 id="Seller-Tayyba-Saveera" data-id="Seller-Tayyba-Saveera" style=""><a class="anchor hidden-xs" href="#Seller-Tayyba-Saveera" title="Seller-Tayyba-Saveera"><span class="octicon octicon-link"></span></a><span>Seller (Tayyba Saveera)</span></h3><ol>
+<li>
+<p><strong><span>Login/Signup:</span></strong></p>
+<ul>
+<li><span>The </span><code>/login</code><span> endpoint allows sellers to log in. It receives the </span><code>username</code><span> and </span><code>password</code><span> in the request body, queries the database for a matching user record, and compares the provided password with the hashed password stored in the database using bcrypt.</span></li>
+<li><span>If the login is successful, a JSON web token (JWT) is created using the user’s </span><code>username</code><span> and </span><code>_id</code><span>, signed with the </span><code>process.env.SECRET</code><span> value.</span></li>
+<li><span>The response includes the generated token, </span><code>username</code><span>, and </span><code>fullname</code><span> of the user.</span></li>
+</ul>
+</li>
+<li>
+<p><strong><span>Property Listing, Selling:</span></strong></p>
+<ul>
+<li><span>The </span><code>/property</code><span> endpoint allows sellers to list a new property for sale.</span></li>
+<li><span>The endpoint expects fields such as </span><code>title</code><span>, </span><code>description</code><span>, </span><code>price</code><span>, </span><code>location</code><span>, </span><code>history</code><span>, and </span><code>tax</code><span> in the request body.</span></li>
+<li><span>The seller’s authentication is verified by checking the JWT in the request header (</span><code>request.token</code><span>) and ensuring the user’s role is set to “seller”.</span></li>
+<li><span>The property details are saved in the database, including the attachments (photos) uploaded by the seller. The file paths are stored in the </span><code>photos</code><span> array field.</span></li>
+<li><span>The property is associated with the seller by setting the </span><code>owner</code><span> field to the seller’s </span><code>_id</code><span>.</span></li>
+<li><span>The saved property is returned in the response.</span></li>
+</ul>
+</li>
+<li>
+<p><strong><span>Messaging:</span></strong></p>
+<ul>
+<li><span>The messaging functionality includes sending simple messages and messages with attachments between users.</span></li>
+<li><span>The </span><code>/simple</code><span> endpoint allows users to send a simple text-based message. The </span><code>sender</code><span>, </span><code>receiver</code><span>, and </span><code>content</code><span> fields are expected in the request body.</span></li>
+<li><span>The </span><code>/attachment</code><span> endpoint allows users to send messages with attachments. It expects the same fields as the </span><code>/simple</code><span> endpoint, along with the attachments uploaded using the </span><code>attachments</code><span> field.</span></li>
+<li><span>The file paths of the uploaded attachments are stored in the </span><code>attachments</code><span> array field.</span></li>
+<li><span>The messages are saved in the database with the sender’s and receiver’s </span><code>_id</code><span>, message content, and the current date and time.</span></li>
+<li><span>Messages can be searched using the </span><code>/search</code><span> endpoint, which takes a </span><code>keyword</code><span> query parameter and returns messages where the content matches the keyword (case-insensitive).</span></li>
+<li><span>Users can also archive, unarchive, mark as read, and delete messages using the respective endpoints.</span></li>
+</ul>
+</li>
+<li>
+<p><strong><span>Appointment:</span></strong></p>
+<ul>
+<li><span>The appointment functionality allows users to schedule and manage appointments for property viewings.</span></li>
+<li><span>The </span><code>/appointment</code><span> endpoint is used to schedule a new appointment. The </span><code>sellerId</code><span>, </span><code>buyerId</code><span>, and </span><code>propertyId</code><span> are expected in the request body.</span></li>
+<li><span>The endpoint verifies the existence of the seller, buyer, and property in the database.</span></li>
+<li><span>It also ensures that the seller is the owner of the property by comparing their </span><code>_id</code><span> values.</span></li>
+<li><span>The appointment details, including the current date and time and a default status of “pending,” are saved in the database.</span></li>
+<li><span>Appointments can be canceled by using the </span><code>/cancel</code><span> endpoint, which updates the status to “cancelled” for the specified appointment.</span></li>
+<li><span>The </span><code>/seller/:sellerId</code><span> endpoint allows sellers to retrieve all their appointments by providing their </span><code>_id</code><span> as a URL parameter.</span></li>
+<li><span>The appointments are populated with the buyer’s name and property title for better readability.</span></li>
+</ul>
+</li>
+</ol><hr><h4 id="LoginSignup" data-id="LoginSignup"><a class="anchor hidden-xs" href="#LoginSignup" title="LoginSignup"><span class="octicon octicon-link"></span></a><span>Login/Signup:</span></h4><pre><code class="javascript hljs"><div class="wrapper"><div class="gutter linenumber"><span></span>
 <span></span>
 <span></span>
 <span></span>
@@ -1598,7 +1770,87 @@ appointmentRouter<span class="token punctuation">.</span><span class="token func
   <span class="token punctuation">}</span>
 <span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
 
-</div></div></code></pre><h3 id="Customer" data-id="Customer" style=""><a class="anchor hidden-xs" href="#Customer" title="Customer"><span class="octicon octicon-link"></span></a><span>Customer</span></h3><hr><h4 id="LoginSignup1" data-id="LoginSignup"><a class="anchor hidden-xs" href="#LoginSignup1" title="LoginSignup1"><span class="octicon octicon-link"></span></a><span>Login/Signup:</span></h4><pre><code class="javascript hljs"><div class="wrapper"><div class="gutter linenumber"><span></span>
+</div></div></code></pre><h3 id="Customer-Usman" data-id="Customer-Usman" style=""><a class="anchor hidden-xs" href="#Customer-Usman" title="Customer-Usman"><span class="octicon octicon-link"></span></a><span>Customer (Usman)</span></h3><ol>
+<li><strong><span>Login/Signup:</span></strong><br>
+<span>The login and signup functionality allows users to create an account or authenticate themselves using their username and password. Here’s an overview of the code implementation:</span></li>
+</ol><ul>
+<li><strong><span>Login</span></strong><span>: The server receives a POST request with the user’s </span><code>username</code><span> and </span><code>password</code><span>. It retrieves the user from the database using the provided username and compares the hashed password with the input password using bcrypt. If the authentication is successful, a JSON web token (JWT) is generated and sent back to the client.</span></li>
+<li><strong><span>Signup</span></strong><span>: The server receives a POST request with the user’s </span><code>username</code><span>, </span><code>fullname</code><span>, </span><code>email</code><span>, </span><code>password</code><span>, </span><code>phone</code><span>, and </span><code>address</code><span>. It checks if the username and email are unique and if the password meets the required criteria. If all conditions are met, the password is hashed using bcrypt and a new user object is created and saved in the database.</span></li>
+</ul><ol start="2">
+<li><strong><span>Property Search, Wishlist, Buy</span></strong><span>:</span><br>
+<span>These functionalities allow customers to search for properties, add them to their wishlist, and buy properties. Here’s an overview of the code implementation:</span></li>
+</ol><ul>
+<li><strong><span>Fetch all properties</span></strong><span>: The server responds to a GET request to retrieve all properties from the database. The response includes information about the owner of each property.</span></li>
+<li><strong><span>Fetch single property</span></strong><span>: The server responds to a GET request with a specific property ID to retrieve the details of that property from the database. The response includes information about the owner of the property.</span></li>
+<li><strong><span>Fetch properties by owner</span></strong><span>: The server responds to a GET request with the owner’s ID to retrieve all properties owned by that specific user.</span></li>
+<li><strong><span>Search properties by keywords in title</span></strong><span>: The server responds to a GET request with a search query to find properties with titles containing the specified keywords. The response includes information about the owner of each property.</span></li>
+<li><strong><span>Search properties by keywords in title and location</span></strong><span>: The server responds to a GET request with search keywords and a location to find properties with titles and locations matching the specified criteria. The response includes information about the owner of each property.</span></li>
+<li><strong><span>Buy property</span></strong><span>: The server receives a PUT request with the property ID to mark the property as sold. It verifies the user’s token, checks if the user exists and has the role of a customer, and updates the property’s buyer and sold status accordingly.</span></li>
+<li><strong><span>Cancel buy process</span></strong><span>: The server receives a PUT request with the property ID to cancel the purchase process. It verifies the user’s token, checks if the user exists and has the role of a buyer, and updates the property’s buyer and sold status accordingly.</span></li>
+<li><strong><span>Fetch all approved properties</span></strong><span>: The server responds to a GET request to retrieve all properties that have been approved.</span></li>
+<li><strong><span>Fetch all verified properties</span></strong><span>: The server responds to a GET request to retrieve all properties that have been verified.</span></li>
+</ul><ol start="3">
+<li><strong><span>Messaging</span></strong><span>:</span></li>
+</ol><p><strong><span>Send a simple message:</span></strong></p><ul>
+<li><span>Route: </span><code>POST /simple</code></li>
+<li><span>This route allows customers to send a simple text message to another user.</span></li>
+<li><span>It expects the </span><code>sender</code><span>, </span><code>receiver</code><span>, and </span><code>content</code><span> fields in the request body.</span></li>
+<li><span>The endpoint creates a new </span><code>Message</code><span> document with the sender, receiver, content, and current date-time.</span></li>
+<li><span>The saved message is returned as the response.</span></li>
+</ul><p><strong><span>Send a message with attachments:</span></strong></p><ul>
+<li><span>Route: </span><code>POST /attachment</code></li>
+<li><span>This route enables customers to send a message with attachments (files).</span></li>
+<li><span>It expects the </span><code>sender</code><span>, </span><code>receiver</code><span>, and </span><code>content</code><span> fields in the request body.</span></li>
+<li><span>The attachments are uploaded using the </span><code>upload.array</code><span> middleware.</span></li>
+<li><span>The endpoint creates a new </span><code>Message</code><span> document with the sender, receiver, content, attachments, and current date-time.</span></li>
+<li><span>The saved message is returned as the response.</span></li>
+</ul><p><strong><span>Search messages:</span></strong></p><ul>
+<li><span>Route: </span><code>GET /search</code></li>
+<li><span>Customers can search for messages containing a specific keyword.</span></li>
+<li><span>The </span><code>keyword</code><span> is provided as a query parameter.</span></li>
+<li><span>The endpoint uses a regular expression to find messages with content matching the keyword.</span></li>
+<li><span>The matching messages are returned as the response.</span></li>
+</ul><p><strong><span>Archive a message:</span></strong></p><ul>
+<li><span>Route: </span><code>PUT /:messageId/archive</code></li>
+<li><span>Customers can archive a specific message by providing its </span><code>messageId</code><span> as a parameter.</span></li>
+<li><span>The endpoint updates the </span><code>isArchived</code><span> field of the message to </span><code>true</code><span>.</span></li>
+<li><span>The updated message is returned as the response.</span></li>
+</ul><p><strong><span>Unarchive a message:</span></strong></p><ul>
+<li><span>Route: </span><code>PUT /:messageId/unarchive</code></li>
+<li><span>Customers can unarchive a specific message by providing its </span><code>messageId</code><span> as a parameter.</span></li>
+<li><span>The endpoint updates the </span><code>isArchived</code><span> field of the message to </span><code>false</code><span>.</span></li>
+<li><span>The updated message is returned as the response.</span></li>
+</ul><p><strong><span>Mark a message as read:</span></strong></p><ul>
+<li><span>Route: </span><code>PUT /:messageId/read</code></li>
+<li><span>Customers can mark a specific message as read by providing its </span><code>messageId</code><span> as a parameter.</span></li>
+<li><span>The endpoint updates the </span><code>isRead</code><span> field of the message to </span><code>true</code><span>.</span></li>
+<li><span>The updated message is returned as the response.</span></li>
+</ul><p><strong><span>Delete a message:</span></strong></p><ul>
+<li><span>Route: </span><code>DELETE /:messageId</code></li>
+<li><span>Customers can delete a specific message by providing its </span><code>messageId</code><span> as a parameter.</span></li>
+<li><span>The endpoint finds and deletes the message from the database.</span></li>
+<li><span>A </span><code>204 No Content</code><span> response is sent to indicate a successful deletion.</span></li>
+</ul><ol start="4">
+<li><strong><span>Appointment</span></strong><span>:</span></li>
+</ol><p><span>The appointment routes handle functionalities related to scheduling appointments, canceling appointments, and retrieving appointments.</span></p><p><strong><span>Schedule an appointment:</span></strong></p><ul>
+<li><span>Route: </span><code>POST /</code></li>
+<li><span>Customers can schedule an appointment by providing the </span><code>sellerId</code><span>, </span><code>buyerId</code><span>, and </span><code>propertyId</code><span> in the request body.</span></li>
+<li><span>The endpoint verifies the existence of the seller, buyer, and property before creating the appointment.</span></li>
+<li><span>It also ensures that the seller is the owner of the property.</span></li>
+<li><span>The appointment is saved with the current date-time and a status of “pending”.</span></li>
+<li><span>The saved appointment is returned as the response.</span></li>
+</ul><p><strong><span>Cancel an appointment:</span></strong></p><ul>
+<li><span>Route: </span><code>PUT /:id/cancel</code></li>
+<li><span>Customers can cancel a specific appointment by providing its </span><code>id</code><span> as a parameter.</span></li>
+<li><span>The end point updates the status of the appointment to “cancelled”.</span></li>
+<li><span>The updated appointment is returned as the response.</span></li>
+</ul><p><strong><span>Get buyer’s appointments:</span></strong></p><ul>
+<li><span>Route: </span><code>GET /buyer/:buyerId</code></li>
+<li><span>Customers can retrieve appointments associated with a specific buyer by providing the </span><code>buyerId</code><span> as a parameter.</span></li>
+<li><span>The endpoint finds appointments where the buyer matches the provided </span><code>buyerId</code><span>.</span></li>
+<li><span>The </span><code>seller</code><span> and </span><code>property</code><span> fields of each appointment are populated with the corresponding user and property data.</span></li>
+<li><span>The appointments are returned as the response.</span></li>
+</ul><p><span>These routes provide the necessary functionality for customers to communicate through messages and schedule appointments with sellers.</span></p><hr><h4 id="LoginSignup1" data-id="LoginSignup"><a class="anchor hidden-xs" href="#LoginSignup1" title="LoginSignup1"><span class="octicon octicon-link"></span></a><span>Login/Signup:</span></h4><pre><code class="javascript hljs"><div class="wrapper"><div class="gutter linenumber"><span></span>
 <span></span>
 <span></span>
 <span></span>
@@ -2422,7 +2674,7 @@ appointmentRouter<span class="token punctuation">.</span><span class="token func
                 <div class="toc"><ul class="nav">
 <li><a href="#Web-Engineering" title="Web Engineering">Web Engineering</a></li>
 <li><a href="#Project-Deliverable-1" title="Project Deliverable 1">Project Deliverable 1</a></li>
-<li><a href="#Real-Estate-MarketPlace" title="Real Estate MarketPlace">Real Estate MarketPlace</a><ul class="nav">
+<li class=""><a href="#Real-Estate-MarketPlace" title="Real Estate MarketPlace">Real Estate MarketPlace</a><ul class="nav">
 <li><a href="#Schemas" title="Schemas">Schemas</a><ul class="nav">
 <li><a href="#User-Schema-Seller-Admin-Customer" title="User Schema (Seller, Admin, Customer)">User Schema (Seller, Admin, Customer)</a></li>
 <li><a href="#Property-Schema" title="Property Schema">Property Schema</a></li>
@@ -2430,10 +2682,11 @@ appointmentRouter<span class="token punctuation">.</span><span class="token func
 <li><a href="#Appointment-Schema" title="Appointment Schema">Appointment Schema</a></li>
 </ul>
 </li>
-<li><a href="#Panels" title="Panels">Panels</a><ul class="nav">
-<li><a href="#Admin" title="Admin">Admin</a></li>
-<li><a href="#Seller" title="Seller">Seller</a></li>
-<li><a href="#Customer" title="Customer">Customer</a></li>
+<li class=""><a href="#Middlewares" title="Middlewares">Middlewares</a></li>
+<li class=""><a href="#Panels" title="Panels">Panels</a><ul class="nav">
+<li class=""><a href="#Admin-Abdullah-Arif" title="Admin (Abdullah Arif)">Admin (Abdullah Arif)</a></li>
+<li><a href="#Seller-Tayyba-Saveera" title="Seller (Tayyba Saveera)">Seller (Tayyba Saveera)</a></li>
+<li><a href="#Customer-Usman" title="Customer (Usman)">Customer (Usman)</a></li>
 </ul>
 </li>
 <li><a href="#Sample-API-Request-and-Response-Postman-Link" title="Sample API Request and Response (Postman Link)">Sample API Request and Response (Postman Link)</a></li>
@@ -2448,7 +2701,7 @@ appointmentRouter<span class="token punctuation">.</span><span class="token func
         <div class="toc"><ul class="nav">
 <li><a href="#Web-Engineering" title="Web Engineering">Web Engineering</a></li>
 <li><a href="#Project-Deliverable-1" title="Project Deliverable 1">Project Deliverable 1</a></li>
-<li><a href="#Real-Estate-MarketPlace" title="Real Estate MarketPlace">Real Estate MarketPlace</a><ul class="nav">
+<li class=""><a href="#Real-Estate-MarketPlace" title="Real Estate MarketPlace">Real Estate MarketPlace</a><ul class="nav">
 <li><a href="#Schemas" title="Schemas">Schemas</a><ul class="nav">
 <li><a href="#User-Schema-Seller-Admin-Customer" title="User Schema (Seller, Admin, Customer)">User Schema (Seller, Admin, Customer)</a></li>
 <li><a href="#Property-Schema" title="Property Schema">Property Schema</a></li>
@@ -2456,10 +2709,11 @@ appointmentRouter<span class="token punctuation">.</span><span class="token func
 <li><a href="#Appointment-Schema" title="Appointment Schema">Appointment Schema</a></li>
 </ul>
 </li>
-<li><a href="#Panels" title="Panels">Panels</a><ul class="nav">
-<li><a href="#Admin" title="Admin">Admin</a></li>
-<li><a href="#Seller" title="Seller">Seller</a></li>
-<li><a href="#Customer" title="Customer">Customer</a></li>
+<li class=""><a href="#Middlewares" title="Middlewares">Middlewares</a></li>
+<li class=""><a href="#Panels" title="Panels">Panels</a><ul class="nav">
+<li class=""><a href="#Admin-Abdullah-Arif" title="Admin (Abdullah Arif)">Admin (Abdullah Arif)</a></li>
+<li><a href="#Seller-Tayyba-Saveera" title="Seller (Tayyba Saveera)">Seller (Tayyba Saveera)</a></li>
+<li><a href="#Customer-Usman" title="Customer (Usman)">Customer (Usman)</a></li>
 </ul>
 </li>
 <li><a href="#Sample-API-Request-and-Response-Postman-Link" title="Sample API Request and Response (Postman Link)">Sample API Request and Response (Postman Link)</a></li>
