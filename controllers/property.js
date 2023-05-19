@@ -140,14 +140,12 @@ propertyRouter.delete("/:id", async (request, response) => {
       return response.status(401).json({ error: "token missing or invalid" });
     }
     const user = await User.findById(decodedToken.id);
+    console.log(user);
     if (!user) {
       return response.status(401).json({ error: "user not found" });
-    } else if (user.role !== "seller" || user.role !== "admin") {
-      return response.status(401).json({ error: "user not authorized" });
-    }
-    if (property && property.owner.toString() === user._id.toString()) {
-      await Property.findByIdAndRemove(request.params.id);
-      response.status(204).end();
+    } else if (property && property.owner.toString() === user._id.toString() || user.role === "admin") {
+      const property=await Property.findByIdAndRemove(request.params.id);
+      response.send(property).status(204).end();
     } else {
       response.status(404).end();
     }
