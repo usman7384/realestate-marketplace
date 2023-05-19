@@ -91,4 +91,40 @@ appointmentRouter.get("/seller/:sellerId", async (request, response) => {
     response.status(500).json({ error: "Failed to retrieve appointments." });
   }
 });
+
+//confirm an appointment
+appointmentRouter.put("/:id/confirm", async (request, response) => {
+  try {
+    const { id } = request.params;
+    console.log(id);
+
+    const appointment = await Appointment.findById(id);
+    console.log(appointment);
+    if (!appointment) {
+      return response.status(404).json({ error: "Appointment not found." });
+    }
+
+    const decodedToken = jwt.verify(request.token, process.env.SECRET);
+    if (!request.token || !decodedToken.id) {
+      return response.status(401).json({ error: "token missing or invalid" });
+    }
+    const user = await User.findById(decodedToken.id);
+    console.log(user);
+    if (!user) {
+      return response.status(401).json({ error: "user not found" });
+    } else if (user.role !== "admin") {
+      return response.status(401).json({ error: "user not authorized" });
+    }
+
+    appointment.status = "confirmed";
+
+    const savedAppointment = await appointment.save();
+    response.json(savedAppointment);
+  } catch (error) {
+    console.log(error);
+    response.status(500).json({ error: "Failed to confirm appointment." });
+  }
+});
+
+
 module.exports = appointmentRouter;
