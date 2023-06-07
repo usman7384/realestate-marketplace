@@ -44,6 +44,21 @@ usersRouter.get("/username/:username", async (request, response) => {
   }
 });
 
+// usersRouter.get("/favourites", async (request, response) => {
+//   try {
+//     const decodedToken = jwt.verify(request.token, process.env.SECRET);
+//     console.log(decodedToken);
+//     if (!request.token || !decodedToken.id) {
+//       return response.status(401).json({ error: "token missing or invalid" });
+//     }
+//     const user = await User.findById(decodedToken.id);
+//     // const wishlist =user.wishlist
+//     // response.json(wishlist);
+//   } catch (error) {
+//     response.status(400).json({ message: error.message });
+//   }
+// });
+
 usersRouter.post("/customer", async (request, response) => {
   try {
     const { username, fullname, email, password, phone, address } =
@@ -156,17 +171,21 @@ usersRouter.put("/:id", async (request, response) => {
   try {
     const { username, fullname, email, password, phone, address } =
       request.body;
+      console.log(request.body)
     const saltRounds = 10;
     const passwordHash = await bcrypt.hash(password, saltRounds);
-
+    console.log("reqtok",request.token)
     const decodedToken = jwt.verify(request.token, process.env.SECRET);
+    console.log("dec",decodedToken);
     if (!request.token || !decodedToken.id) {
       return response.status(401).json({ error: "token missing or invalid" });
     }
+    console.log(request.token, decodedToken.id)
     const user = await User.findById(decodedToken.id);
     if (!user) {
       return response.status(401).json({ error: "user not found" });
     }
+    console.log(user)
     if (request.params.id !== decodedToken.id) {
       if (user.role == "admin") {
         const updatedUser = await User.findByIdAndUpdate(
@@ -182,7 +201,6 @@ usersRouter.put("/:id", async (request, response) => {
           { new: true },
         );
         response.json(updatedUser);
-        response.json(deletedUser);
       } else {
         return response.status(401).json({ error: "user not authorized" });
       }
@@ -210,6 +228,8 @@ usersRouter.put("/:id", async (request, response) => {
 //delete a user
 usersRouter.delete("/:id", async (request, response) => {
   try {
+    console.log(request.params.id);
+    console.log(request.token);
     const decodedToken = jwt.verify(request.token, process.env.SECRET);
     if (!request.token || !decodedToken.id) {
       return response.status(401).json({ error: "token missing or invalid" });
@@ -218,6 +238,7 @@ usersRouter.delete("/:id", async (request, response) => {
     if (!user) {
       return response.status(401).json({ error: "user not found" });
     }
+    console.log(user);
     if (request.params.id !== decodedToken.id) {
       if (user.role == "admin") {
         const deletedUser = await User.findByIdAndRemove(request.params.id);
@@ -235,7 +256,9 @@ usersRouter.delete("/:id", async (request, response) => {
 });
 
 
+
 usersRouter.put("/wishlist/:Propertyid", async (request, response) => {
+  console.log(request.params);
   try {
     const { Propertyid } = request.params;
     const decodedToken = jwt.verify(request.token, process.env.SECRET);
@@ -243,9 +266,10 @@ usersRouter.put("/wishlist/:Propertyid", async (request, response) => {
       return response.status(401).json({ error: "token missing or invalid" });
     }
     const user = await User.findById(decodedToken.id);
+    console.log(user);
     if (!user) {
       return response.status(401).json({ error: "user not found" });
-    } else if (user.role !== "buyer") {
+    } else if (user.role !== "customer") {
       return response.status(401).json({ error: "user not authorized" });
     }
     const updatedUser = await User.findByIdAndUpdate(user._id);
@@ -255,5 +279,11 @@ usersRouter.put("/wishlist/:Propertyid", async (request, response) => {
     response.status(400).json({ message: error.message });
   }
 });
+
+
+
+
+  
+
 
 module.exports = usersRouter;

@@ -5,6 +5,17 @@ const User = require("../models/user");
 const Property = require("../models/property");
 const mongoose = require("mongoose");
 
+
+appointmentRouter.get("/", async (request, response) => {
+  try {
+   const appointments = await Appointment.find({}).populate("buyer").populate("seller").populate("property");
+    response.json(appointments);
+    console.log(appointments)
+  } catch (error) {
+    response.status(404).end();
+  }
+});
+
 appointmentRouter.post("/", async (request, response) => {
   try {
     const { sellerId, buyerId, propertyId } = request.body;
@@ -12,6 +23,11 @@ appointmentRouter.post("/", async (request, response) => {
     const buyerfound = await User.findById(buyerId);
     const propertyfound = await Property.findById(propertyId);
     const propertyOwner = await User.findById(propertyfound.owner._id);
+    console.log("seller",sellerfound)
+    console.log("owner",propertyOwner)
+    console.log("seller id",sellerfound._id)
+    console.log("owner id",propertyOwner._id)
+    console.log("buyer",buyerfound)
     if(!sellerfound || !buyerfound || !propertyfound){
       return response.status(404).json({ error: "Seller, buyer or property not found." });
     }

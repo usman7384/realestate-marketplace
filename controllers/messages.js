@@ -38,8 +38,9 @@ messageRouter.get("/sent/:sender", async (request, response) => {
   }
 });
 
-messageRouter.get("/recieved/:reciever", async (request, response) => {
+messageRouter.get("/recieved", async (request, response) => {
   try {
+    // console.log(request.params);
     const decodedToken = jwt.verify(request.token, process.env.SECRET);
     if (!request.token || !decodedToken.id) {
       return response.status(401).json({ error: "token missing or invalid" });
@@ -48,16 +49,12 @@ messageRouter.get("/recieved/:reciever", async (request, response) => {
     if (!user) {
       return response.status(401).json({ error: "user not found" });
     }
-    if (
-      user.role === "admin" ||
-      user._id.toString() === request.params.reciever.toString()
-    ) {
       const messages = await Message.find({
-        receiver: request.params.reciever,
+        receiver: user._id,
       });
       response.json(messages);
     }
-  } catch (error) {
+   catch (error) {
     response.status(404).end();
   }
 });

@@ -72,10 +72,21 @@ propertyRouter.get("/search/:query", async (request, response) => {
 });
 
 propertyRouter.get("/search/:query/:location", async (request, response) => {
-  const properties = await Property.find({
-    title: { $regex: request.params.query, $options: "i" },
-    location: { $regex: request.params.location, $options: "i" },
-  }).populate("owner", { username: 1, fullname: 1 });
+  console.log(request.params.query, request.params.location);
+  const { query, location } = request.params;
+  let queryCondition = {
+    title: { $regex: query, $options: "i" }
+  };
+
+  if (location) {
+    queryCondition.location = { $regex: location, $options: "i" };
+  }
+
+  const properties = await Property.find(queryCondition).populate("owner", {
+    username: 1,
+    fullname: 1
+  });
+
   if (properties) {
     response.json(properties);
   } else {
@@ -155,7 +166,6 @@ propertyRouter.delete("/:id", async (request, response) => {
 });
 
 
-//edit a property
 propertyRouter.put("/:id", async (request, response) => {
   try {
     const { title, description, price, photos, location, history, tax } =
@@ -167,28 +177,29 @@ propertyRouter.put("/:id", async (request, response) => {
     const user = await User.findById(decodedToken.id);
     if (!user) {
       return response.status(401).json({ error: "user not found" });
-    } else if (user.role !== "seller" || user.role !== "admin") {
+    } else if (user.role !== "seller" && user.role !== "admin") {
       return response.status(401).json({ error: "user not authorized" });
     }
+    const updateFields = {};
+    if (title) updateFields.title = title;
+    if (description) updateFields.description = description;
+    if (price) updateFields.price = price;
+    if (photos) updateFields.photos = photos;
+    if (location) updateFields.location = location;
+    if (history) updateFields.history = history;
+    if (tax) updateFields.tax = tax;
+    updateFields.buyer = null;
+    updateFields.isSold = false;
+    
     const property = await Property.findByIdAndUpdate(
       request.params.id,
-      {
-        title,
-        description,
-        price,
-        photos,
-        location,
-        history,
-        tax,
-        buyer: null,
-        isSold: false,
-      },
-      { new: true },
+      updateFields,
+      { new: true }
     );
     response.json(property);
   } catch (error) {
     response.status(404).end();
-  }
+  }
 });
 
 
@@ -249,6 +260,8 @@ propertyRouter.put("/cancel/:id", async (request, response) => {
 // approve a property
 propertyRouter.put("/:id/approve", async (request, response) => {
   try {
+    console.log(request.token)
+    console.log(request.params.id)
     const decodedToken = jwt.verify(request.token, process.env.SECRET);
     if (!request.token || !decodedToken.id) {
       return response.status(401).json({ error: "token missing or invalid" });
@@ -268,6 +281,7 @@ propertyRouter.put("/:id/approve", async (request, response) => {
     }
 
     property.isApproved = true;
+    
     property.verificationComments = "Property approved by admin";
 
     const savedProperty = await property.save();
@@ -280,6 +294,7 @@ propertyRouter.put("/:id/approve", async (request, response) => {
 // verify a property
 propertyRouter.put("/:id/verify", async (request, response) => {
   try {
+    const verificationComments = request.body.verificationComments;
     const decodedToken = jwt.verify(request.token, process.env.SECRET);
     if (!request.token || !decodedToken.id) {
       return response.status(401).json({ error: "token missing or invalid" });
@@ -299,7 +314,7 @@ propertyRouter.put("/:id/verify", async (request, response) => {
     }
 
     property.isVerified = true;
-    property.verificationComments = "Property documents verified";
+    property.verificationComments = verificationComments;
 
     const savedProperty = await property.save();
     response.json(savedProperty);
