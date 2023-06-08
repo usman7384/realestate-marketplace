@@ -16,6 +16,67 @@ const storage = multer.diskStorage({
 // Create multer upload middleware
 const upload = multer({ storage });
 
+// Get all chats
+messageRouter.get("/chats", async (request, response) => {
+  try {
+    const decodedToken = jwt.verify(request.token, process.env.SECRET);
+    if (!request.token || !decodedToken.id) {
+      return response.status(401).json({ error: "token missing or invalid" });
+    }
+    const user = await User.findById(decodedToken.id);
+    if (!user) {
+      return response.status(401).json({ error: "user not found" });
+    }
+
+    const chats = await Message.aggregate([
+      {
+        $group: {
+          _id: {
+            $cond: [
+              { $eq: ["$sender", user._id] },
+              "$receiver",
+              "$sender",
+            ],
+          },
+          lastMessage: { $last: "$content" },
+          unreadCount: {
+            $sum: {
+              $cond: [
+                { $and: [{ $eq: ["$isRead", false] }, { $ne: ["$sender", user._id] }] },
+                1,
+                0,
+              ],
+            },
+          },
+        },
+      },
+      {
+        $lookup: {
+          from: "users", // Replace with the actual collection name for users
+          localField: "_id",
+          foreignField: "_id",
+          as: "user",
+        },
+      },
+      {
+        $project: {
+          _id: 1,
+          name: { $arrayElemAt: ["$user.name", 0] }, // Replace 'name' with the actual field for the user's name
+          lastMessage: 1,
+          unreadCount: 1,
+        },
+      },
+    ]);
+
+    response.json(chats);
+  } catch (error) {
+    console.error(error);
+    response.status(500).json({ error: "Failed to fetch chats" });
+  }
+});
+
+
+
 messageRouter.get("/sent/:sender", async (request, response) => {
   try {
     const decodedToken = jwt.verify(request.token, process.env.SECRET);

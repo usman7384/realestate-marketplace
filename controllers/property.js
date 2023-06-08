@@ -17,7 +17,7 @@ const storage = multer.diskStorage({
 const upload = multer({ storage });
 
 propertyRouter.get("/", async (request, response) => {
-  const properties = await Property.find({}).populate("owner", {
+  const properties = await Property.find({ isSold: false }).populate("owner", {
     username: 1,
     fullname: 1,
   });
@@ -37,10 +37,12 @@ propertyRouter.get("/:id", async (request, response) => {
 });
 
 propertyRouter.get("/owner/:id", async (request, response) => {
+  console.log(request.params.id);
   const properties = await Property.find({ owner: request.params.id }).populate(
     "owner",
     { username: 1, fullname: 1 },
   );
+  console.log(properties);
   if (properties) {
     response.json(properties);
   } else {
@@ -107,7 +109,7 @@ propertyRouter.post(
         return response.status(401).json({ error: "token missing or invalid" });
       }
       const user = await User.findById(decodedToken.id);
-
+      
       if (!user) {
         return response.status(401).json({ error: "user not found" });
       } else if (user.role !== "seller") {
@@ -224,6 +226,7 @@ propertyRouter.put("/buy/:id", async (request, response) => {
       },
       { new: true },
     );
+    await property.save();
     console.log(property);
     response.json(property);
   } catch (error) {

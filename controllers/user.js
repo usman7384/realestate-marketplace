@@ -2,6 +2,28 @@ const bcrypt = require("bcrypt");
 const jwt = require("jsonwebtoken");
 const usersRouter = require("express").Router();
 const User = require("../models/user");
+const Property = require("../models/property");
+
+
+usersRouter.get('/favourites', async (request, response) => {
+  try {
+    const decodedToken = jwt.verify(request.token, process.env.SECRET);
+    if (!request.token || !decodedToken.id) {
+      return response.status(401).json({ error: 'token missing or invalid' });
+    }
+
+    const user = await User.findById(decodedToken.id).populate('wishlist');
+    if (!user) {
+      return response.status(401).json({ error: 'user not found' });
+    }
+
+    const wishlist = user.wishlist;
+    response.json(wishlist);
+  } catch (error) {
+    response.status(400).json({ message: error.message });
+  }
+});
+
 
 usersRouter.get("/sellers", async (request, response) => {
   try {
@@ -44,25 +66,13 @@ usersRouter.get("/username/:username", async (request, response) => {
   }
 });
 
-// usersRouter.get("/favourites", async (request, response) => {
-//   try {
-//     const decodedToken = jwt.verify(request.token, process.env.SECRET);
-//     console.log(decodedToken);
-//     if (!request.token || !decodedToken.id) {
-//       return response.status(401).json({ error: "token missing or invalid" });
-//     }
-//     const user = await User.findById(decodedToken.id);
-//     // const wishlist =user.wishlist
-//     // response.json(wishlist);
-//   } catch (error) {
-//     response.status(400).json({ message: error.message });
-//   }
-// });
+
 
 usersRouter.post("/customer", async (request, response) => {
   try {
     const { username, fullname, email, password, phone, address } =
       request.body;
+      console.log("i am here")
     const existingUsername = await User.findOne({ username });
     const existingEmail = await User.findOne({ email });
     if (request.body.password.length < 5) {
@@ -86,10 +96,12 @@ usersRouter.post("/customer", async (request, response) => {
         address,
         role: "customer",
       });
+      console.log(newUser)
       const savedUser = await newUser.save();
       response.status(201).json(savedUser);
     }
   } catch (error) {
+    console.log(error)
     response.status(400).json({ message: error.message });
   }
 });
@@ -260,7 +272,8 @@ usersRouter.delete("/:id", async (request, response) => {
 usersRouter.put("/wishlist/:Propertyid", async (request, response) => {
   console.log(request.params);
   try {
-    const { Propertyid } = request.params;
+    const Propertyid  = request.params.Propertyid;
+    console.log("prtropt",Propertyid);
     const decodedToken = jwt.verify(request.token, process.env.SECRET);
     if (!request.token || !decodedToken.id) {
       return response.status(401).json({ error: "token missing or invalid" });
@@ -272,13 +285,50 @@ usersRouter.put("/wishlist/:Propertyid", async (request, response) => {
     } else if (user.role !== "customer") {
       return response.status(401).json({ error: "user not authorized" });
     }
-    const updatedUser = await User.findByIdAndUpdate(user._id);
+    const property = await Property.findById(Propertyid);
+    console.log(property);
+
+    const updatedUser = await User.findById(user._id);
     updatedUser.wishlist.push(Propertyid);
+    await updatedUser.save();
+    console.log(updatedUser.wishlist);
     response.json(updatedUser);
   } catch (error) {
     response.status(400).json({ message: error.message });
   }
 });
+
+usersRouter.delete("/wishlist/:propertyId", async (request, response) => {
+  try {
+    const propertyId = request.params.propertyId;
+    console.log(propertyId)
+    console.log(request.token);
+    const decodedToken = jwt.verify(request.token, process.env.SECRET);
+    if (!request.token || !decodedToken.id) {
+      return response.status(401).json({ error: "token missing or invalid" });
+    }
+
+    const user = await User.findById(decodedToken.id);
+    if (!user) {
+      return response.status(401).json({ error: "user not found" });
+    } else if (user.role !== "customer") {
+      return response.status(401).json({ error: "user not authorized" });
+    }
+
+    const property = await Property.findById(propertyId);
+    if (!property) {
+      return response.status(404).json({ error: "property not found" });
+    }
+    console.log(property);
+    user.wishlist.pull(propertyId);
+    await user.save();
+
+    response.json(user);
+  } catch (error) {
+    response.status(400).json({ message: error.message });
+  }
+});
+
 
 
 

@@ -16,29 +16,31 @@ appointmentRouter.get("/", async (request, response) => {
   }
 });
 
-appointmentRouter.post("/", async (request, response) => {
+appointmentRouter.post("/:id", async (request, response) => {
   try {
-    const { sellerId, buyerId, propertyId } = request.body;
-    const sellerfound = await User.findById(sellerId);
-    const buyerfound = await User.findById(buyerId);
-    const propertyfound = await Property.findById(propertyId);
-    const propertyOwner = await User.findById(propertyfound.owner._id);
-    console.log("seller",sellerfound)
-    console.log("owner",propertyOwner)
-    console.log("seller id",sellerfound._id)
-    console.log("owner id",propertyOwner._id)
-    console.log("buyer",buyerfound)
-    if(!sellerfound || !buyerfound || !propertyfound){
-      return response.status(404).json({ error: "Seller, buyer or property not found." });
+    const id = request.params.id;
+    console.log(id)
+    const propertyfound = await Property.findById(id);
+    if (!propertyfound) {
+      return response.status(404).json({ error: "Property not found." });
     }
-    console.log(sellerfound)
-    console.log(propertyOwner)
-    console.log(sellerfound._id)
-    console.log(propertyOwner._id)
-    if(!(sellerfound._id.equals( propertyOwner._id))){
-      return response.status(401).json({ error: "Seller is not the owner of the property." });
+
+    const decodedToken = jwt.verify(request.token, process.env.SECRET);
+    if (!request.token || !decodedToken.id) {
+      return response.status(401).json({ error: "Token missing or invalid." });
     }
-  
+
+    const buyerfound = await User.findById(decodedToken.id);
+    if (!buyerfound) {
+      return response.status(401).json({ error: "Buyer not found." });
+    }
+    console.log(propertyfound.owner._id)
+
+    const sellerfound = await User.findById(propertyfound.owner._id);
+    if (!sellerfound) {
+      return response.status(404).json({ error: "Seller not found." });
+    }
+
     const appointment = new Appointment({
       buyer: buyerfound._id,
       seller: sellerfound._id,
@@ -53,6 +55,7 @@ appointmentRouter.post("/", async (request, response) => {
     response.status(400).json({ error: "Failed to create appointment." });
   }
 });
+
 
 
 
